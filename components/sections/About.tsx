@@ -1,71 +1,131 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnimateIn from "@/components/ui/AnimateIn";
+import {
+  HiLightningBolt,
+  HiChip,
+  HiTrendingUp,
+  HiCreditCard,
+} from "react-icons/hi";
+import type { IconType } from "react-icons";
 
-const pillars = [
-  { label: "Skills", desc: "Expert entrepreneurial training across every sector" },
-  { label: "Technology", desc: "Digital tools that multiply enterprise productivity" },
-  { label: "Market", desc: "Demand-side networks that open real buying channels" },
-  { label: "Credit", desc: "De-risked financing that unlocks capital access" },
+const stats = [
+  { num: "2,847+", label: "CM Elevate Graduates" },
+  { num: "1,350+", label: "Registered Startups"  },
+  { num: "885+",   label: "Funding Cases"         },
+  { num: "2019",   label: "Year Founded"          },
+];
+
+const pillars: { num: string; label: string; desc: string; Icon: IconType }[] = [
+  {
+    num: "01",
+    label: "Skills",
+    desc: "Expert entrepreneurial training across every sector",
+    Icon: HiLightningBolt,
+  },
+  {
+    num: "02",
+    label: "Technology",
+    desc: "Digital tools that multiply enterprise productivity",
+    Icon: HiChip,
+  },
+  {
+    num: "03",
+    label: "Market",
+    desc: "Demand-side networks that open real buying channels",
+    Icon: HiTrendingUp,
+  },
+  {
+    num: "04",
+    label: "Credit",
+    desc: "De-risked financing that unlocks capital access",
+    Icon: HiCreditCard,
+  },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="bg-[#0a0a0a] py-24 md:py-32">
+    <section id="about" className="bg-white py-24 md:py-36 border-t border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        {/* Top: label + heading */}
-        <div className="grid md:grid-cols-2 gap-6 md:gap-16 mb-16 md:mb-20">
+        <div className="grid md:grid-cols-[1fr_1.1fr] gap-12 md:gap-24 items-start mb-20 md:mb-28">
+
+          {/* Left — eyebrow + headline */}
           <AnimateIn direction="left">
-            <p className="text-[11px] text-[#9EC84A] font-semibold tracking-[0.25em] uppercase mb-4">Who We Are</p>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Who We Are
+              </p>
+            </div>
             <h2
-              className="font-black text-white leading-[0.95] tracking-tight"
-              style={{ fontSize: "clamp(36px, 5.5vw, 72px)" }}
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-display)" }}
             >
               Meghalaya&apos;s<br />
               most ambitious<br />
-              <span className="text-[#9EC84A]">bet on its people.</span>
+              bet on its<br />
+              <span className="text-[#2D6A4F]">people.</span>
             </h2>
           </AnimateIn>
+
+          {/* Right — body + stats + link */}
           <AnimateIn direction="right" delay={0.1}>
-            <div className="flex flex-col justify-end h-full pt-8 md:pt-0">
-              <p className="text-[14px] text-white/50 leading-[1.8] mb-6">
-                Launched in 2019 by the Government of Meghalaya, PRIME — the Promotion and Incubation of Market-driven Enterprises programme — is the state&apos;s most comprehensive entrepreneurship initiative. We provide systematic, targeted support through a network of PRIME Hubs that act as one-stop-shops for every kind of founder.
+            <div className="flex flex-col gap-8 pt-1">
+              <p className="text-black/50 leading-[1.8]" style={{ fontSize: "var(--text-body)" }}>
+                Launched in 2019 by the Government of Meghalaya, PRIME — the Promotion and Incubation of Market-driven Enterprises programme — is the state&apos;s most comprehensive entrepreneurship initiative, supporting founders at every stage through a network of PRIME Hubs.
               </p>
+
+              <div className="grid grid-cols-2 gap-px bg-black/[0.07] border border-black/[0.07]">
+                {stats.map((s) => (
+                  <div key={s.label} className="bg-white px-5 py-5">
+                    <p className="font-black text-black leading-none mb-1" style={{ fontSize: "var(--text-heading)" }}>{s.num}</p>
+                    <p className="text-black/35 font-medium" style={{ fontSize: "var(--text-label)" }}>{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
               <Link
                 href="/about-us"
-                className="group inline-flex items-center gap-2 text-[13px] font-semibold text-[#9EC84A] hover:gap-4 transition-all duration-300"
+                className="group inline-flex items-center gap-3 font-semibold text-black hover:text-[#2D6A4F] transition-colors duration-300 self-start"
+                style={{ fontSize: "var(--text-sm)" }}
               >
                 Our full story
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
               </Link>
             </div>
           </AnimateIn>
+
         </div>
 
-        {/* Image + pillars */}
-        <div className="grid md:grid-cols-5 gap-6">
-          <AnimateIn className="md:col-span-3 relative aspect-[16/10] rounded overflow-hidden" direction="up" delay={0.05}>
-            <Image
-              src="/assets/images/about-image.jpg"
-              alt="PRIME in action"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 60vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          </AnimateIn>
+        <AnimateIn delay={0.05} className="relative aspect-[16/7] overflow-hidden mb-20 md:mb-28">
+          <Image
+            src="/assets/images/about-image.jpg"
+            alt="PRIME in action"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 90vw"
+          />
+        </AnimateIn>
 
-          <div className="md:col-span-2 grid grid-cols-2 gap-3">
-            {pillars.map((p, i) => (
-              <AnimateIn key={p.label} delay={0.1 + i * 0.07} direction="up">
-                <div className="h-full bg-[#111] border border-white/8 rounded p-5 hover:border-[#9EC84A]/30 transition-colors group">
-                  <p className="text-[11px] text-[#9EC84A] font-bold uppercase tracking-widest mb-2">{p.label}</p>
-                  <p className="text-[12px] text-white/50 leading-relaxed">{p.desc}</p>
+        {/* Four pillars — large icon boxes, full dark invert on hover */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/[0.07] border border-black/[0.07]">
+          {pillars.map((p, i) => (
+            <AnimateIn key={p.label} delay={0.05 + i * 0.06}>
+              <div className="bg-white p-6 md:p-8 flex flex-col gap-6 group hover:bg-[#1B4332] transition-colors duration-300 h-full cursor-default">
+                {/* Icon box */}
+                <div className="w-14 h-14 flex items-center justify-center bg-[#74C69D]/20 group-hover:bg-[#2D6A4F] transition-colors duration-300">
+                  <span className="text-[#2D6A4F] group-hover:text-white transition-colors duration-300">
+                    <p.Icon size={28} />
+                  </span>
                 </div>
-              </AnimateIn>
-            ))}
-          </div>
+                <div>
+                  <p className="font-black text-black group-hover:text-white text-[18px] mb-2 transition-colors duration-300">{p.label}</p>
+                  <p className="text-black/40 group-hover:text-white/40 leading-relaxed transition-colors duration-300" style={{ fontSize: "var(--text-sm)" }}>{p.desc}</p>
+                </div>
+              </div>
+            </AnimateIn>
+          ))}
         </div>
 
       </div>

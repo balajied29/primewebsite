@@ -2,56 +2,23 @@ import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
+import {
+  HiStar,
+  HiFire,
+  HiShieldCheck,
+  HiAcademicCap,
+  HiHome,
+  HiCurrencyRupee,
+} from "react-icons/hi";
+import type { IconType } from "react-icons";
 
-const schemes = [
-  {
-    tag: "Flagship",
-    name: "CM Elevate",
-    tagline: "Chief Minister's E-Championship Challenge",
-    desc: "The government's flagship incubation challenge. 75 entrepreneurs selected annually for a 9-month intensive programme. Top 35 receive ₹2 lakh grants; the next 40 receive ₹1 lakh each.",
-    href: "/cm-elevate",
-    highlight: true,
-  },
-  {
-    tag: "Innovation Fund",
-    name: "PRIME Entrepreneurship Fund",
-    tagline: "Dedicated innovation-based funding",
-    desc: "A dedicated fund for innovation-based startups incubated through PRIME. Provides direct financing to businesses that show strong growth potential and are beyond the seed stage.",
-    href: "/prime-entrepreneurship-funding",
-    highlight: false,
-  },
-  {
-    tag: "Credit Access",
-    name: "FLDG Mechanism",
-    tagline: "First Loss Default Guarantee",
-    desc: "PRIME's credit enhancement scheme that de-risks lending for banks and financial institutions, enabling micro, nano, and solo entrepreneurs to access formal bank credit with reduced collateral requirements.",
-    href: "/funding-schemes",
-    highlight: false,
-  },
-  {
-    tag: "Youth",
-    name: "Student Tinkering Fund",
-    tagline: "Empowering student entrepreneurs",
-    desc: "Targeted support for students turning ideas into businesses. Provides seed capital, mentorship, and access to PRIME co-working facilities for early-stage student-led ventures.",
-    href: "/student-tinkering-fund",
-    highlight: false,
-  },
-  {
-    tag: "Agriculture",
-    name: "IFAD GAP Funding",
-    tagline: "International Fund for Agricultural Development",
-    desc: "Funding support for agri-entrepreneurs and rural enterprises through the IFAD-backed programme, focused on bridging financing gaps in Meghalaya's agricultural and rural enterprise ecosystem.",
-    href: "/ifad-gap-funding",
-    highlight: false,
-  },
-  {
-    tag: "Food Processing",
-    name: "Interest-Free Bank Loans",
-    tagline: "For food processing entrepreneurs",
-    desc: "Interest-free bank loans targeted at entrepreneurs in the food processing sector — reducing the cost of capital and encouraging value addition to Meghalaya's rich agricultural produce.",
-    href: "/funding-schemes",
-    highlight: false,
-  },
+const schemes: { tag: string; name: string; tagline: string; desc: string; href: string; highlight: boolean; Icon: IconType }[] = [
+  { tag: "Flagship",        name: "CM Elevate",                  tagline: "Chief Minister's E-Championship Challenge",    desc: "The government's flagship incubation challenge. 75 entrepreneurs selected annually for a 9-month intensive programme. Top 35 receive ₹2 lakh grants; the next 40 receive ₹1 lakh each.",                                                                                               href: "/cm-elevate",                     highlight: true,  Icon: HiStar },
+  { tag: "Innovation Fund", name: "PRIME Entrepreneurship Fund", tagline: "Dedicated innovation-based funding",           desc: "A dedicated fund for innovation-based startups incubated through PRIME. Provides direct financing to businesses that show strong growth potential and are beyond the seed stage.",                                                                                        href: "/prime-entrepreneurship-funding", highlight: false, Icon: HiFire },
+  { tag: "Credit Access",   name: "FLDG Mechanism",              tagline: "First Loss Default Guarantee",                 desc: "PRIME's credit enhancement scheme that de-risks lending for banks and financial institutions, enabling micro, nano, and solo entrepreneurs to access formal bank credit with reduced collateral requirements.",                                                             href: "/funding-schemes",                highlight: false, Icon: HiShieldCheck },
+  { tag: "Youth",           name: "Student Tinkering Fund",      tagline: "Empowering student entrepreneurs",            desc: "Targeted support for students turning ideas into businesses. Provides seed capital, mentorship, and access to PRIME co-working facilities for early-stage student-led ventures.",                                                                                   href: "/student-tinkering-fund",         highlight: false, Icon: HiAcademicCap },
+  { tag: "Agriculture",     name: "IFAD GAP Funding",            tagline: "International Fund for Agricultural Development", desc: "Funding support for agri-entrepreneurs and rural enterprises through the IFAD-backed programme, focused on bridging financing gaps in Meghalaya's agricultural and rural enterprise ecosystem.",                                                               href: "/ifad-gap-funding",               highlight: false, Icon: HiHome },
+  { tag: "Food Processing", name: "Interest-Free Bank Loans",    tagline: "For food processing entrepreneurs",           desc: "Interest-free bank loans targeted at entrepreneurs in the food processing sector — reducing the cost of capital and encouraging value addition to Meghalaya's rich agricultural produce.",                                                                        href: "/funding-schemes",                highlight: false, Icon: HiCurrencyRupee },
 ];
 
 const creditChallenges = [
@@ -59,6 +26,12 @@ const creditChallenges = [
   "Lack of formal credit history among first-generation entrepreneurs",
   "Limited bank presence in rural and remote areas of Meghalaya",
   "Information asymmetry between borrowers and financial institutions",
+];
+
+const steps = [
+  { step: "01", title: "Register on the portal", desc: "Create an account on the PRIME entrepreneur portal at portal.primemeghalaya.com to begin your application." },
+  { step: "02", title: "Connect with your PRIME Hub", desc: "Visit or contact the nearest PRIME Hub in your district. Our team will assess your stage and match you to the right funding window." },
+  { step: "03", title: "Apply & pitch", desc: "Submit your business plan and go through the assessment process. Selected entrepreneurs receive grants, loans, or credit linkages based on their profile." },
 ];
 
 export default function FundingSchemesPage() {
@@ -72,9 +45,9 @@ export default function FundingSchemesPage() {
       />
 
       {/* Intro with image */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative aspect-[4/3] rounded overflow-hidden order-last md:order-first">
+          <div className="relative aspect-[4/3] overflow-hidden order-last md:order-first">
             <Image
               src="/assets/images/funding.jpg"
               alt="PRIME Funding Schemes"
@@ -84,74 +57,81 @@ export default function FundingSchemesPage() {
             />
           </div>
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The Challenge</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-5">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                The Challenge
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-8"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Unlocking credit for Meghalaya&apos;s entrepreneurs
             </h2>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-5">
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
               Access to timely, low-cost financing remains one of the biggest barriers facing entrepreneurs in Meghalaya — particularly micro, nano, and solo operators who fall outside the reach of traditional banking.
             </p>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-6">
+            <p className="text-black/50 leading-[1.8] mb-8" style={{ fontSize: "var(--text-body)" }}>
               PRIME addresses this through a combination of direct grants, interest-free loans, credit enhancement mechanisms, and a dedicated innovation fund — ensuring every entrepreneur, regardless of stage or sector, has a pathway to capital.
             </p>
-            <ul className="flex flex-col gap-2.5">
+            <div className="border-t border-black/[0.08]">
               {creditChallenges.map((c, i) => (
-                <li key={i} className="flex items-start gap-3 text-[12px] text-gray-500 leading-relaxed">
-                  <span className="w-4 h-4 rounded-full border border-[#9EC84A]/50 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#9EC84A]" />
+                <div key={i} className="flex items-start gap-4 py-4 border-b border-black/[0.08]">
+                  <span className="font-black text-[#2D6A4F] shrink-0 mt-0.5" style={{ fontSize: "var(--text-label)" }}>
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  {c}
-                </li>
+                  <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{c}</p>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Schemes grid */}
-      <section className="bg-[#f9f9f9] py-20">
+      <section className="bg-[#f5f5f5] py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Our Programmes</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Our Programmes
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Funding windows available through PRIME
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
             {schemes.map((s) => (
               <div
                 key={s.name}
-                className={`rounded p-6 flex flex-col border transition-colors ${
-                  s.highlight
-                    ? "bg-[#0d0d0d] border-[#9EC84A]/30 hover:border-[#9EC84A]/60"
-                    : "bg-white border-gray-100 hover:border-[#9EC84A]/40"
+                className={`flex flex-col p-8 transition-colors ${
+                  s.highlight ? "bg-[#1B4332]" : "bg-white hover:bg-[#f5f5f5]"
                 }`}
               >
-                <span
-                  className={`text-[10px] font-bold uppercase tracking-widest mb-3 ${
-                    s.highlight ? "text-[#9EC84A]" : "text-[#9EC84A]"
-                  }`}
-                >
+                <div className={`w-12 h-12 flex items-center justify-center mb-6 ${s.highlight ? "bg-white/10" : "bg-[#74C69D]/20"}`}>
+                  <span className={s.highlight ? "text-[#74C69D]" : "text-[#2D6A4F]"}><s.Icon size={24} /></span>
+                </div>
+                <p className="font-bold text-[#2D6A4F] uppercase tracking-widest mb-4" style={{ fontSize: "var(--text-label)" }}>
                   {s.tag}
-                </span>
+                </p>
                 <h3
-                  className={`text-[15px] font-black mb-1 ${
-                    s.highlight ? "text-white" : "text-[#111111]"
-                  }`}
+                  className={`font-black mb-2 ${s.highlight ? "text-white" : "text-black"}`}
+                  style={{ fontSize: "var(--text-lead)" }}
                 >
                   {s.name}
                 </h3>
-                <p
-                  className={`text-[11px] mb-3 ${
-                    s.highlight ? "text-gray-400" : "text-gray-400"
-                  }`}
-                >
+                <p className={`mb-4 ${s.highlight ? "text-white/35" : "text-black/35"}`} style={{ fontSize: "var(--text-sm)" }}>
                   {s.tagline}
                 </p>
                 <p
-                  className={`text-[12px] leading-relaxed flex-1 ${
-                    s.highlight ? "text-gray-300" : "text-gray-500"
-                  }`}
+                  className={`leading-relaxed flex-1 ${s.highlight ? "text-white/50" : "text-black/50"}`}
+                  style={{ fontSize: "var(--text-sm)" }}
                 >
                   {s.desc}
                 </p>
@@ -162,25 +142,35 @@ export default function FundingSchemesPage() {
       </section>
 
       {/* How to apply */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Next Steps</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Next Steps
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               How to access funding through PRIME
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { step: "01", title: "Register on the portal", desc: "Create an account on the PRIME entrepreneur portal at portal.primemeghalaya.com to begin your application." },
-              { step: "02", title: "Connect with your PRIME Hub", desc: "Visit or contact the nearest PRIME Hub in your district. Our team will assess your stage and match you to the right funding window." },
-              { step: "03", title: "Apply & pitch", desc: "Submit your business plan and go through the assessment process. Selected entrepreneurs receive grants, loans, or credit linkages based on their profile." },
-            ].map((s) => (
-              <div key={s.step} className="group">
-                <div className="h-1 w-10 bg-[#9EC84A] mb-5 group-hover:w-full transition-all duration-500" />
-                <p className="text-[#9EC84A] font-black text-xs mb-2">{s.step}</p>
-                <h3 className="text-[15px] font-black text-[#111111] mb-2">{s.title}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{s.desc}</p>
+          <div className="grid md:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
+            {steps.map((s) => (
+              <div key={s.step} className="bg-white p-8 group hover:bg-[#f5f5f5] transition-colors">
+                <div className="h-px w-10 bg-[#2D6A4F] mb-8 group-hover:w-full transition-all duration-500" />
+                <p className="font-black text-[#2D6A4F] mb-3" style={{ fontSize: "var(--text-label)" }}>
+                  {s.step}
+                </p>
+                <h3 className="font-black text-black mb-3" style={{ fontSize: "var(--text-lead)" }}>
+                  {s.title}
+                </h3>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -188,19 +178,29 @@ export default function FundingSchemesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d0d0d] py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <h2 className="text-[28px] md:text-[40px] font-black text-white mb-4">
+      <section className="bg-[#1B4332] py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+              Apply
+            </p>
+          </div>
+          <h2
+            className="font-black text-white leading-[0.9] tracking-tight mb-8 max-w-2xl"
+            style={{ fontSize: "var(--text-heading)" }}
+          >
             Find the right scheme for you
           </h2>
-          <p className="text-gray-400 text-sm mb-8 max-w-md mx-auto">
+          <p className="text-white/40 leading-[1.75] mb-10 max-w-lg" style={{ fontSize: "var(--text-lead)" }}>
             Register on the PRIME portal and our team will guide you to the most suitable funding opportunity for your business.
           </p>
           <a
             href="https://portal.primemeghalaya.com/GeneralRegistraion.php"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-9 py-3 rounded-sm bg-[#9EC84A] text-white text-sm font-semibold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            style={{ fontSize: "var(--text-sm)" }}
           >
             Register on PRIME Portal
           </a>

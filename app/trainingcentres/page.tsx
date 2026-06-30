@@ -1,13 +1,16 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import { HiCollection, HiDesktopComputer, HiArchive, HiChip, HiStar } from "react-icons/hi";
+import type { IconType } from "react-icons";
 
-const categories = [
-  { num: "01", label: "Advanced Handicrafts & Handicraft Design", desc: "Centres providing advanced skill development in traditional and contemporary handicraft techniques, helping artisans build export-ready products." },
-  { num: "02", label: "Videography & Filmmaking", desc: "Professional training facilities for visual storytelling, video production, and digital content creation — supporting Meghalaya's growing creative economy." },
-  { num: "03", label: "Advanced Packaging & Packaging Design", desc: "Training in modern packaging technologies and design thinking, enabling entrepreneurs to enhance shelf appeal and meet national retail standards." },
-  { num: "04", label: "New Technologies", desc: "Covering App Development, Artificial Intelligence, and emerging digital tools — helping Meghalaya's entrepreneurs stay competitive in the digital economy." },
-  { num: "05", label: "Wildcard Category", desc: "Open to advanced tourism, nursery development and spawn production, traditional tribal healing and medicines, and other high-impact sectors unique to Meghalaya." },
+const categories: { label: string; desc: string; Icon: IconType }[] = [
+  { label: "Advanced Handicrafts & Handicraft Design", desc: "Centres providing advanced skill development in traditional and contemporary handicraft techniques, helping artisans build export-ready products.", Icon: HiCollection },
+  { label: "Videography & Filmmaking",                  desc: "Professional training facilities for visual storytelling, video production, and digital content creation — supporting Meghalaya's growing creative economy.", Icon: HiDesktopComputer },
+  { label: "Advanced Packaging & Packaging Design",      desc: "Training in modern packaging technologies and design thinking, enabling entrepreneurs to enhance shelf appeal and meet national retail standards.", Icon: HiArchive },
+  { label: "New Technologies",                           desc: "Covering App Development, Artificial Intelligence, and emerging digital tools — helping Meghalaya's entrepreneurs stay competitive in the digital economy.", Icon: HiChip },
+  { label: "Wildcard Category",                          desc: "Open to advanced tourism, nursery development and spawn production, traditional tribal healing and medicines, and other high-impact sectors unique to Meghalaya.", Icon: HiStar },
 ];
 
 const funding = [
@@ -27,39 +30,62 @@ export default function TrainingCentresPage() {
       />
 
       {/* Intro */}
-      <section className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 max-w-3xl">
-          <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The Programme</p>
-          <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-5">
-            Training Centre Establishment Competition
-          </h2>
-          <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-            Training and Capacity Building is a core component for every entrepreneur to build the necessary skills across technical and business aspects to build a sustainable and successful enterprise. At this point, the availability of high-quality training facilities in Meghalaya is very limited — and in certain sectors, non-existent.
-          </p>
-          <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-            For high-quality advanced training in most sectors, entrepreneurs currently have to travel long distances and spend significant amounts. PRIME is changing this by financially supporting local entrepreneurs to establish world-class training centres right here in Meghalaya.
-          </p>
-          <p className="text-[13px] text-gray-600 leading-[1.8]">
-            The best proposals are selected through a transparent competition process — awarding up to <strong className="text-[#111111]">₹50 Lakhs</strong> per selected training centre.
-          </p>
+      <section className="bg-white py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                The Programme
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-8"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
+              Training Centre Establishment Competition
+            </h2>
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              Training and Capacity Building is a core component for every entrepreneur to build the necessary skills across technical and business aspects to build a sustainable and successful enterprise. At this point, the availability of high-quality training facilities in Meghalaya is very limited — and in certain sectors, non-existent.
+            </p>
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              For high-quality advanced training in most sectors, entrepreneurs currently have to travel long distances and spend significant amounts. PRIME is changing this by financially supporting local entrepreneurs to establish world-class training centres right here in Meghalaya.
+            </p>
+            <p className="text-black/50 leading-[1.8]" style={{ fontSize: "var(--text-body)" }}>
+              The best proposals are selected through a transparent competition process — awarding up to <strong className="text-black">₹50 Lakhs</strong> per selected training centre.
+            </p>
+          </div>
+          <ImagePlaceholder label="Training Centre" className="aspect-[4/3]" />
         </div>
       </section>
 
       {/* Funding breakdown */}
-      <section className="bg-[#f9f9f9] py-20">
+      <section className="bg-[#f5f5f5] py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Financial Support</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Financial Support
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Funding available per selected centre
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
             {funding.map((f) => (
-              <div key={f.type} className="bg-white border border-gray-100 rounded p-7">
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-2">{f.type}</p>
-                <p className="text-[34px] font-black text-[#9EC84A] leading-none mb-2">{f.amount}</p>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{f.desc}</p>
+              <div key={f.type} className="bg-white p-8 flex flex-col">
+                <p className="text-black/35 font-semibold uppercase tracking-wide mb-4" style={{ fontSize: "var(--text-label)" }}>
+                  {f.type}
+                </p>
+                <p className="font-black text-[#2D6A4F] leading-[0.9] mb-4" style={{ fontSize: "var(--text-heading)" }}>
+                  {f.amount}
+                </p>
+                <p className="text-black/50 leading-relaxed mt-auto" style={{ fontSize: "var(--text-sm)" }}>{f.desc}</p>
               </div>
             ))}
           </div>
@@ -67,21 +93,31 @@ export default function TrainingCentresPage() {
       </section>
 
       {/* Categories */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Eligible Sectors</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Eligible Sectors
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Competition categories
             </h2>
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="border-t border-black/[0.08]">
             {categories.map((c) => (
-              <div key={c.num} className="flex items-start gap-6 p-6 rounded border border-gray-100 hover:border-[#9EC84A]/30 transition-colors">
-                <span className="text-[#9EC84A] font-black text-sm shrink-0 mt-0.5">Category {c.num}</span>
+              <div key={c.label} className="flex items-start gap-6 py-6 border-b border-black/[0.08] group hover:bg-[#f5f5f5] px-2 transition-colors">
+                <div className="w-10 h-10 flex items-center justify-center bg-[#74C69D]/20 shrink-0 group-hover:bg-[#2D6A4F] transition-colors">
+                  <span className="text-[#2D6A4F] group-hover:text-white transition-colors"><c.Icon size={20} /></span>
+                </div>
                 <div>
-                  <h3 className="text-[14px] font-bold text-[#111111] mb-1">{c.label}</h3>
-                  <p className="text-[12px] text-gray-500 leading-relaxed">{c.desc}</p>
+                  <h3 className="font-bold text-black mb-2" style={{ fontSize: "var(--text-body)" }}>{c.label}</h3>
+                  <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{c.desc}</p>
                 </div>
               </div>
             ))}
@@ -90,15 +126,27 @@ export default function TrainingCentresPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d0d0d] py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <h2 className="text-[28px] md:text-[36px] font-black text-white mb-4">Have a training centre idea?</h2>
-          <p className="text-gray-400 text-sm mb-8 max-w-md mx-auto">
+      <section className="bg-[#1B4332] py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+              Get in Touch
+            </p>
+          </div>
+          <h2
+            className="font-black text-white leading-[0.9] tracking-tight mb-8 max-w-2xl"
+            style={{ fontSize: "var(--text-heading)" }}
+          >
+            Have a training centre idea?
+          </h2>
+          <p className="text-white/40 leading-[1.75] mb-10 max-w-lg" style={{ fontSize: "var(--text-lead)" }}>
             Submit your proposal and compete for up to ₹50 Lakhs in financial support to establish an advanced training centre in Meghalaya.
           </p>
           <a
             href="mailto:info@primemeghalaya.com"
-            className="inline-block px-9 py-3 rounded-sm bg-[#9EC84A] text-white text-sm font-semibold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            style={{ fontSize: "var(--text-sm)" }}
           >
             Get in touch
           </a>

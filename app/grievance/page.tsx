@@ -3,6 +3,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
 import Link from "next/link";
+import { HiMail, HiShieldCheck, HiChat, HiGlobe, HiClipboardList } from "react-icons/hi";
+import type { IconType } from "react-icons";
 
 export const metadata: Metadata = {
   title: "Grievance Redressal — PRIME Meghalaya",
@@ -43,35 +45,18 @@ const steps = [
   },
 ];
 
-const categories = [
-  {
-    icon: "🔐",
-    title: "Data Protection Requests",
-    description:
-      "Exercise your rights under the DPDP Act, 2023 — request access, correction, or erasure of your personal data held by PRIME.",
-    type: "data",
-  },
-  {
-    icon: "📋",
-    title: "Programme Complaints",
-    description:
-      "Complaints about PRIME programmes, schemes, funding applications, selection processes, or conduct of staff.",
-    type: "programme",
-  },
-  {
-    icon: "🌐",
-    title: "Website Issues",
-    description:
-      "Report broken links, accessibility barriers, incorrect information, or technical problems on this website.",
-    type: "website",
-  },
-  {
-    icon: "❓",
-    title: "General Queries",
-    description:
-      "Questions about eligibility, application processes, scheme details, or any other PRIME-related queries.",
-    type: "general",
-  },
+const categories: { title: string; description: string; Icon: IconType }[] = [
+  { title: "Data Protection Requests", description: "Exercise your rights under the DPDP Act, 2023 — request access, correction, or erasure of your personal data held by PRIME.", Icon: HiShieldCheck },
+  { title: "Programme Complaints",     description: "Complaints about PRIME programmes, schemes, funding applications, selection processes, or conduct of staff.", Icon: HiClipboardList },
+  { title: "Website Issues",           description: "Report broken links, accessibility barriers, incorrect information, or technical problems on this website.", Icon: HiGlobe },
+  { title: "General Queries",          description: "Questions about eligibility, application processes, scheme details, or any other PRIME-related queries.", Icon: HiChat },
+];
+
+const timelines = [
+  { label: "Acknowledgement", time: "Within 3 working days" },
+  { label: "Resolution (standard)", time: "Within 30 days" },
+  { label: "Resolution (complex)", time: "Up to 60 days (with notice)" },
+  { label: "Data-protection requests (DPDP Act)", time: "Within 30 days" },
 ];
 
 export default function GrievancePage() {
@@ -86,76 +71,72 @@ export default function GrievancePage() {
 
       <main id="main-content">
         {/* Officer card */}
-        <section className="bg-[#0d0d0d] py-14">
+        <section className="bg-[#1B4332] py-24 md:py-36">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="grid md:grid-cols-2 gap-px bg-white/[0.06] border border-white/[0.06]">
               {/* Officer info */}
-              <div className="bg-[#141414] border border-white/[0.08] rounded-sm p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-full bg-[#9EC84A]/15 flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9EC84A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-[#9EC84A] font-semibold tracking-[0.2em] uppercase">Designated Officer</p>
-                    <h2 className="text-white font-bold text-[15px]">Grievance Officer — PRIME</h2>
-                  </div>
+              <div className="bg-[#1B4332] p-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="w-8 h-px bg-[#2D6A4F]" />
+                  <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+                    Designated Officer
+                  </p>
                 </div>
+                <h2 className="font-black text-white mb-8" style={{ fontSize: "var(--text-heading)" }}>
+                  Grievance Officer — PRIME
+                </h2>
 
-                <dl className="space-y-4 text-[13px]">
-                  <div>
-                    <dt className="text-white/35 text-[10px] font-semibold uppercase tracking-wider mb-1">Organisation</dt>
-                    <dd className="text-white/80">Department of Commerce &amp; Industries, Government of Meghalaya</dd>
-                  </div>
-                  <div>
-                    <dt className="text-white/35 text-[10px] font-semibold uppercase tracking-wider mb-1">Email</dt>
-                    <dd>
-                      <a href="mailto:grievance@primemeghalaya.com" className="text-[#9EC84A] hover:text-white transition-colors">
-                        grievance@primemeghalaya.com
-                      </a>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-white/35 text-[10px] font-semibold uppercase tracking-wider mb-1">Postal Address</dt>
-                    <dd className="text-white/70 leading-relaxed">
-                      PRIME Meghalaya<br />
-                      3rd Floor, Ri Kynmaw Complex<br />
-                      Nongrim Hills, Shillong – 793003<br />
-                      Meghalaya, India
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-white/35 text-[10px] font-semibold uppercase tracking-wider mb-1">Office Hours</dt>
-                    <dd className="text-white/70">Monday – Friday, 10:00 AM – 5:00 PM<br />(Excluding public holidays)</dd>
-                  </div>
+                <dl className="border-t border-white/[0.06]">
+                  {[
+                    { label: "Organisation", val: "Department of Commerce & Industries, Government of Meghalaya" },
+                    { label: "Email", val: "grievance@primemeghalaya.com", isEmail: true },
+                    { label: "Postal Address", val: "PRIME Meghalaya\n3rd Floor, Ri Kynmaw Complex\nNongrim Hills, Shillong – 793003\nMeghalaya, India" },
+                    { label: "Office Hours", val: "Monday – Friday, 10:00 AM – 5:00 PM\n(Excluding public holidays)" },
+                  ].map((d) => (
+                    <div key={d.label} className="py-4 border-b border-white/[0.06]">
+                      <dt className="font-semibold uppercase tracking-wide text-white/30 mb-1" style={{ fontSize: "var(--text-label)" }}>
+                        {d.label}
+                      </dt>
+                      <dd className="text-white/60 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                        {("isEmail" in d && d.isEmail) ? (
+                          <a href={`mailto:${d.val}`} className="text-[#2D6A4F] hover:text-white transition-colors">
+                            {d.val}
+                          </a>
+                        ) : (
+                          d.val.split("\n").map((line, i) => (
+                            <span key={i}>{line}<br /></span>
+                          ))
+                        )}
+                      </dd>
+                    </div>
+                  ))}
                 </dl>
               </div>
 
               {/* Timelines */}
-              <div className="space-y-4">
-                <h3 className="text-white font-bold text-[15px] mb-5">Response Timelines</h3>
-                {[
-                  { label: "Acknowledgement", time: "Within 3 working days", color: "bg-[#9EC84A]" },
-                  { label: "Resolution (standard)", time: "Within 30 days", color: "bg-[#9EC84A]/70" },
-                  { label: "Resolution (complex)", time: "Up to 60 days (with notice)", color: "bg-[#9EC84A]/40" },
-                  { label: "Data-protection requests (DPDP Act)", time: "Within 30 days", color: "bg-blue-400/60" },
-                ].map((t, i) => (
-                  <div key={i} className="flex items-center gap-4 bg-[#141414] border border-white/[0.06] rounded-sm p-4">
-                    <div className={`w-2 h-2 rounded-full shrink-0 ${t.color}`} />
-                    <div className="flex-1">
-                      <p className="text-white/80 text-[13px] font-medium">{t.label}</p>
+              <div className="bg-[#1B4332] p-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="w-8 h-px bg-[#2D6A4F]" />
+                  <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+                    Response Timelines
+                  </p>
+                </div>
+                <h3 className="font-black text-white mb-8" style={{ fontSize: "var(--text-heading)" }}>
+                  When to expect a response
+                </h3>
+                <div className="border-t border-white/[0.06]">
+                  {timelines.map((t, i) => (
+                    <div key={i} className="flex items-center justify-between gap-4 py-4 border-b border-white/[0.06]">
+                      <p className="text-white/60" style={{ fontSize: "var(--text-sm)" }}>{t.label}</p>
+                      <p className="text-[#2D6A4F] font-semibold shrink-0" style={{ fontSize: "var(--text-sm)" }}>{t.time}</p>
                     </div>
-                    <p className="text-[12px] text-white/45 shrink-0">{t.time}</p>
-                  </div>
-                ))}
-
-                <div className="mt-4 p-4 border border-[#9EC84A]/20 bg-[#9EC84A]/5 rounded-sm">
-                  <p className="text-[11px] text-white/55 leading-relaxed">
-                    <strong className="text-[#9EC84A]">DPDP Act, 2023:</strong> For data-protection
+                  ))}
+                </div>
+                <div className="mt-6 p-5 border border-[#2D6A4F]/20 bg-[#2D6A4F]/5">
+                  <p className="text-white/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                    <strong className="text-[#2D6A4F]">DPDP Act, 2023:</strong> For data-protection
                     requests, if we fail to respond within 30 days or if you are dissatisfied, you
-                    may approach the <strong className="text-white/80">Data Protection Board of India</strong>.
+                    may approach the <strong className="text-white/70">Data Protection Board of India</strong>.
                   </p>
                 </div>
               </div>
@@ -164,25 +145,30 @@ export default function GrievancePage() {
         </section>
 
         {/* Grievance categories */}
-        <section className="bg-white py-16">
+        <section className="bg-white py-24 md:py-36">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <div className="max-w-xl mb-12">
-              <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">
-                Types of Grievances
-              </p>
-              <h2 className="text-[26px] md:text-[32px] font-black text-[#111] leading-snug">
+            <div className="max-w-xl mb-14">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-8 h-px bg-[#2D6A4F]" />
+                <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                  Types of Grievances
+                </p>
+              </div>
+              <h2
+                className="font-black text-black leading-[0.9] tracking-tight"
+                style={{ fontSize: "var(--text-heading)" }}
+              >
                 What can you report?
               </h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/[0.07] border border-black/[0.07]">
               {categories.map((c) => (
-                <div
-                  key={c.type}
-                  className="border border-gray-100 rounded-sm p-6 hover:border-[#9EC84A]/40 transition-colors group"
-                >
-                  <span className="text-2xl mb-4 block" aria-hidden="true">{c.icon}</span>
-                  <h3 className="text-[14px] font-black text-[#111] mb-2">{c.title}</h3>
-                  <p className="text-[12px] text-gray-500 leading-relaxed">{c.description}</p>
+                <div key={c.title} className="bg-white p-8 hover:bg-[#f5f5f5] transition-colors">
+                  <div className="w-12 h-12 flex items-center justify-center bg-[#74C69D]/20 mb-6">
+                    <span className="text-[#2D6A4F]"><c.Icon size={24} /></span>
+                  </div>
+                  <h3 className="font-bold text-black mb-3" style={{ fontSize: "var(--text-body)" }}>{c.title}</h3>
+                  <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{c.description}</p>
                 </div>
               ))}
             </div>
@@ -190,60 +176,70 @@ export default function GrievancePage() {
         </section>
 
         {/* Step-by-step process */}
-        <section className="bg-[#f9f9f9] py-16">
+        <section className="bg-[#f5f5f5] py-24 md:py-36">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <div className="max-w-xl mb-12">
-              <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">How It Works</p>
-              <h2 className="text-[26px] md:text-[32px] font-black text-[#111] leading-snug">
+            <div className="max-w-xl mb-14">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="w-8 h-px bg-[#2D6A4F]" />
+                <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                  How It Works
+                </p>
+              </div>
+              <h2
+                className="font-black text-black leading-[0.9] tracking-tight"
+                style={{ fontSize: "var(--text-heading)" }}
+              >
                 Step-by-step process
               </h2>
             </div>
-            <div className="relative">
-              {/* Connecting line */}
-              <div className="absolute left-[22px] top-10 bottom-10 w-px bg-gray-200 hidden md:block" aria-hidden="true" />
-              <div className="space-y-6">
-                {steps.map((s) => (
-                  <div key={s.num} className="flex gap-6 items-start">
-                    <div className="w-11 h-11 rounded-full bg-[#9EC84A] flex items-center justify-center shrink-0 font-black text-black text-[11px] z-10">
-                      {s.num}
-                    </div>
-                    <div className="bg-white border border-gray-100 rounded-sm p-5 flex-1 hover:border-[#9EC84A]/30 transition-colors">
-                      <h3 className="text-[14px] font-bold text-[#111] mb-2">{s.heading}</h3>
-                      <p className="text-[12px] text-gray-500 leading-relaxed">{s.detail}</p>
-                    </div>
+            <div className="border-t border-black/[0.08]">
+              {steps.map((s) => (
+                <div key={s.num} className="flex items-start gap-6 py-6 border-b border-black/[0.08]">
+                  <span className="font-black text-[#2D6A4F] shrink-0 mt-0.5 w-8" style={{ fontSize: "var(--text-label)" }}>
+                    {s.num}
+                  </span>
+                  <div>
+                    <h3 className="font-bold text-black mb-2" style={{ fontSize: "var(--text-body)" }}>{s.heading}</h3>
+                    <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{s.detail}</p>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="bg-[#0d0d0d] py-14">
-          <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-            <h2 className="text-[24px] md:text-[32px] font-black text-white mb-4">
+        <section className="bg-[#1B4332] py-24 md:py-36">
+          <div className="max-w-7xl mx-auto px-6 lg:px-10">
+            <div className="flex items-center gap-4 mb-10">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+                Raise a Concern
+              </p>
+            </div>
+            <h2
+              className="font-black text-white leading-[0.9] tracking-tight mb-8 max-w-2xl"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Ready to raise a concern?
             </h2>
-            <p className="text-white/50 text-sm mb-8 max-w-md mx-auto leading-relaxed">
+            <p className="text-white/40 leading-[1.75] mb-10 max-w-lg" style={{ fontSize: "var(--text-lead)" }}>
               Email us directly — we are a government body and take every complaint seriously.
             </p>
             <a
               href="mailto:grievance@primemeghalaya.com"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#9EC84A] text-black text-[13px] font-bold rounded-sm hover:bg-white transition-colors"
+              className="inline-flex items-center gap-3 px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+              style={{ fontSize: "var(--text-sm)" }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
+              <HiMail size={16} />
               grievance@primemeghalaya.com
             </a>
 
-            <div className="mt-8 flex flex-wrap gap-4 justify-center text-[12px] text-white/35">
-              <Link href="/privacy-policy" className="hover:text-[#9EC84A] transition-colors">
+            <div className="mt-10 flex flex-wrap gap-6" style={{ fontSize: "var(--text-sm)" }}>
+              <Link href="/privacy-policy" className="text-white/35 hover:text-[#2D6A4F] transition-colors">
                 Privacy Policy
               </Link>
-              <span aria-hidden="true">·</span>
-              <Link href="/terms-and-conditions" className="hover:text-[#9EC84A] transition-colors">
+              <Link href="/terms-and-conditions" className="text-white/35 hover:text-[#2D6A4F] transition-colors">
                 Terms &amp; Conditions
               </Link>
             </div>

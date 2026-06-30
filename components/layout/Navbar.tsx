@@ -1,195 +1,426 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-const navLinks = [
-  { label: "Home", href: "/", dropdown: null },
+type MegaItem = {
+  label: string;
+  subtitle?: string;
+  href: string;
+  img?: string;
+  external?: boolean;
+};
+
+type MegaColumn = {
+  heading: string;
+  items: MegaItem[];
+};
+
+type NavLink = {
+  label: string;
+  href: string;
+  mega: null | {
+    columns: MegaColumn[];
+    featured?: {
+      badge?: string;
+      img: string;
+      title: string;
+      desc: string;
+      href: string;
+      cta: string;
+    };
+  };
+};
+
+const navLinks: NavLink[] = [
+  { label: "Home", href: "/", mega: null },
   {
     label: "About Us",
     href: "/about-us",
-    dropdown: [
-      { label: "About PRIME",        href: "/about-us"          },
-      { label: "Our Team",           href: "/team"              },
-      { label: "PRIME Overview",     href: "/about-us#overview" },
-      { label: "Friends & Partners", href: "/about-us#partners" },
-    ],
+    mega: {
+      columns: [
+        {
+          heading: "Who We Are",
+          items: [
+            {
+              label: "About PRIME",
+              subtitle: "Our story & mission",
+              href: "/about-us",
+              img: "/assets/images/about-image.jpg",
+            },
+            {
+              label: "Our Team",
+              subtitle: "The people behind PRIME",
+              href: "/team",
+            },
+          ],
+        },
+        {
+          heading: "Programmes",
+          items: [
+            { label: "Incubation",            subtitle: "CM's E-Championship",   href: "/incubation"            },
+            { label: "Market Linkage",        subtitle: "Trade & exhibitions",   href: "/market-linkage"        },
+            { label: "Business Facilitation", subtitle: "Startup handholding",   href: "/business-facilitation" },
+            { label: "Training Centres",      subtitle: "Skill development",     href: "/trainingcentres"       },
+            { label: "Fellowship",            subtitle: "Deep-dive programme",   href: "/fellowship"            },
+          ],
+        },
+        {
+          heading: "Connect",
+          items: [
+            { label: "PRIME Portal",  subtitle: "Register your startup", href: "https://portal.primemeghalaya.com", external: true },
+            { label: "Contact Us",    subtitle: "Reach our team",        href: "/about-us#contact" },
+            { label: "Grievance",     subtitle: "File a complaint",      href: "/grievance" },
+          ],
+        },
+      ],
+      featured: {
+        badge: "About",
+        img: "/assets/images/about-image.jpg",
+        title: "Meghalaya's most ambitious bet on its people",
+        desc: "From 2019 to today — how PRIME is reshaping the Northeast's economic landscape.",
+        href: "/about-us",
+        cta: "Read more",
+      },
+    },
   },
   {
-    label: "Sector",
+    label: "Programmes",
     href: "#",
-    dropdown: [
-      { label: "Incubation",            href: "/incubation"            },
-      { label: "Market Linkage",        href: "/market-linkage"        },
-      { label: "Business Facilitation", href: "/business-facilitation" },
-      { label: "Training Centres",      href: "/trainingcentres"       },
-      { label: "Fellowship",            href: "/fellowship"            },
-    ],
+    mega: {
+      columns: [
+        {
+          heading: "Incubation & Support",
+          items: [
+            { label: "CM's E-Championship",   subtitle: "75 founders, 9 months",   href: "/incubation"            },
+            { label: "Business Facilitation", subtitle: "Handholding & liaison",   href: "/business-facilitation" },
+            { label: "Market Linkage",        subtitle: "Trade & ONDC access",     href: "/market-linkage"        },
+            { label: "Training Centres",      subtitle: "Sector-specific skills",  href: "/trainingcentres"       },
+            { label: "Fellowship",            subtitle: "Deep-dive immersive",     href: "/fellowship"            },
+          ],
+        },
+        {
+          heading: "Funding & Schemes",
+          items: [
+            { label: "All Schemes",              subtitle: "Overview of all funds",     href: "/funding-schemes"                },
+            { label: "CM Elevate",               subtitle: "Subsidy across 15 sectors", href: "/cm-elevate"                     },
+            { label: "Entrepreneurship Fund",    subtitle: "Up to ₹75L zero-interest",  href: "/prime-entrepreneurship-funding" },
+            { label: "IFAD GAP Funding",         subtitle: "Agriculture & food chains", href: "/ifad-gap-funding"               },
+            { label: "Student Tinkering Fund",   subtitle: "Youth innovation grants",   href: "/student-tinkering-fund"         },
+          ],
+        },
+      ],
+      featured: {
+        badge: "Apply Now",
+        img: "/assets/images/about-image.jpg",
+        title: "CM's E-Championship Challenge",
+        desc: "75 selected founders. ₹2 lakh grant. IIM Calcutta certificate. Now open for its 7th edition.",
+        href: "/incubation",
+        cta: "Learn more",
+      },
+    },
   },
   {
     label: "Funding & Schemes",
     href: "/funding-schemes",
-    dropdown: [
-      { label: "All Schemes",                href: "/funding-schemes"                },
-      { label: "CM Elevate",                 href: "/cm-elevate"                     },
-      { label: "PRIME Entrepreneurship Fund",href: "/prime-entrepreneurship-funding" },
-      { label: "IFAD GAP Funding",           href: "/ifad-gap-funding"               },
-      { label: "Student Tinkering Fund",     href: "/student-tinkering-fund"         },
-    ],
+    mega: {
+      columns: [
+        {
+          heading: "Grants & Subsidies",
+          items: [
+            { label: "CM Elevate",             subtitle: "35–75% project cost subsidy", href: "/cm-elevate"                     },
+            { label: "Kick Start Grant",       subtitle: "Up to ₹10L non-returnable",   href: "/funding-schemes"                },
+            { label: "Small Support Grant",    subtitle: "Up to ₹3L seed support",      href: "/funding-schemes"                },
+            { label: "InnoVenture Grant",      subtitle: "Up to ₹35L for innovators",   href: "/funding-schemes"                },
+            { label: "Student Tinkering Fund", subtitle: "Youth & campus innovation",   href: "/student-tinkering-fund"         },
+          ],
+        },
+        {
+          heading: "Loans & Investment",
+          items: [
+            { label: "Entrepreneurship Fund", subtitle: "Up to ₹75L zero-interest",  href: "/prime-entrepreneurship-funding" },
+            { label: "IFAD GAP Funding",      subtitle: "Agriculture value chains",  href: "/ifad-gap-funding"               },
+            { label: "All Schemes",           subtitle: "Full overview & eligibility", href: "/funding-schemes"              },
+          ],
+        },
+      ],
+      featured: {
+        badge: "Flagship",
+        img: "/assets/images/about-image.jpg",
+        title: "CM Elevate — Meghalaya's sector subsidy programme",
+        desc: "35–75% cost subsidy across 15+ sectors. Zero bureaucratic friction for eligible enterprises.",
+        href: "/cm-elevate",
+        cta: "Explore CM Elevate",
+      },
+    },
   },
 ];
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen]       = useState(false);
+  const [menuOpen, setMenuOpen]         = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [scrolled, setScrolled]       = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
+  const [scrolled, setScrolled]         = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    const onClick = (e: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setOpenDropdown(null);
-      }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setOpenDropdown(null); setMenuOpen(false); }
     };
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpenDropdown(null);
-        setMenuOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onClick);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onClick);
-      document.removeEventListener("keydown", onKeyDown);
-    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
+  const openMenu = useCallback((label: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpenDropdown(label);
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    closeTimer.current = setTimeout(() => setOpenDropdown(null), 140);
+  }, []);
+
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
   }, []);
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0a0a0a]/90 backdrop-blur-xl border-white/[0.06]"
-          : "bg-[#0a0a0a] border-transparent"
+      className={`fixed top-4 left-4 right-4 z-50 bg-white/[0.88] backdrop-blur-md border border-black/[0.07] rounded-2xl transition-shadow duration-300 ${
+        scrolled ? "shadow-[0_8px_32px_rgba(0,0,0,0.10)]" : "shadow-[0_2px_12px_rgba(0,0,0,0.06)]"
       }`}
       role="banner"
+      onMouseLeave={scheduleClose}
     >
       {/* ── Main bar ── */}
-      <div
-        ref={navRef}
-        className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-[1fr_auto_1fr] items-center h-[64px]"
-      >
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-[1fr_auto_1fr] items-center h-[76px]">
 
-        {/* Col 1 — Logo */}
-        <Link href="/" className="flex items-center shrink-0">
+        {/* Col 1 — Logo + tagline */}
+        <Link href="/" className="flex flex-col shrink-0 gap-1 items-start" onClick={() => setOpenDropdown(null)}>
           <Image
-            src="/logo.png"
+            src="/logo-color.png"
             alt="PRIME Meghalaya"
             width={160}
             height={48}
-            className="h-9 w-auto object-contain"
+            className="h-8 w-auto object-contain object-left"
             priority
           />
+          <span className="text-[8px] font-semibold tracking-[0.2em] uppercase text-black/30 leading-none">
+            Government of Meghalaya
+          </span>
         </Link>
 
-        {/* Col 2 — Nav links (centered) */}
-        <ul className="hidden md:flex items-center justify-center gap-7" role="navigation" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <li key={link.label} className="relative">
-              {link.dropdown ? (
-                <button
-                  onClick={() =>
-                    setOpenDropdown(openDropdown === link.label ? null : link.label)
-                  }
-                  aria-expanded={openDropdown === link.label}
-                  aria-haspopup="true"
-                  className="text-white/60 hover:text-white text-[12px] flex items-center gap-1.5 transition-colors py-1"
-                >
-                  {link.label}
-                  <motion.span
-                    animate={{ rotate: openDropdown === link.label ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="text-[#9EC84A] opacity-70"
+        {/* Col 2 — Nav links */}
+        <ul className="hidden md:flex items-center gap-8" role="navigation" aria-label="Main navigation">
+          {navLinks.map((link) => {
+            const isOpen = openDropdown === link.label;
+            return (
+              <li key={link.label}>
+                {link.mega ? (
+                  <button
+                    onMouseEnter={() => openMenu(link.label)}
+                    onFocus={() => openMenu(link.label)}
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
+                    className={`text-[13px] flex items-center gap-1.5 transition-colors py-1 font-medium ${
+                      isOpen ? "text-black" : "text-black/50 hover:text-black"
+                    }`}
                   >
-                    <svg width="8" height="5" viewBox="0 0 8 5" fill="none">
-                      <path d="M1 1L4 4L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </motion.span>
-                </button>
-              ) : (
-                <Link
-                  href={link.href}
-                  className="text-white/60 hover:text-white text-[12px] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )}
-
-              {link.dropdown && openDropdown === link.label && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="absolute top-full left-0 mt-2 w-60 bg-[#111] border border-white/10 rounded-sm shadow-2xl py-1.5 z-50"
-                  role="menu"
-                  aria-label={`${link.label} submenu`}
-                >
-                  {link.dropdown.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpenDropdown(null)}
-                      role="menuitem"
-                      className="flex items-center gap-2 px-4 py-2.5 text-[12px] text-white/65 hover:text-white hover:bg-white/5 transition-colors group"
+                    {link.label}
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.18 }}
+                      className={isOpen ? "text-[#2D6A4F]" : "opacity-50 text-current"}
                     >
-                      <span className="w-1 h-1 rounded-full bg-[#9EC84A] opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {item.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </li>
-          ))}
+                      <svg width="8" height="5" viewBox="0 0 8 5" fill="none">
+                        <path d="M1 1L4 4L7 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                      </svg>
+                    </motion.span>
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="text-[13px] font-medium text-black/50 hover:text-black transition-colors"
+                    onMouseEnter={scheduleClose}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
-        {/* Col 3 — CTA + mobile toggle */}
+        {/* Col 3 — Right utility bar */}
         <div className="flex items-center gap-3 justify-end">
+          {/* Apply CTA */}
           <Link
             href="https://portal.primemeghalaya.com/GeneralRegistraion.php"
             target="_blank"
             rel="noopener noreferrer"
             data-lpignore="true"
             data-form-type="other"
-            className="hidden md:inline-flex group relative px-5 py-2 bg-[#9EC84A] text-black text-[12px] font-bold overflow-hidden rounded-sm"
+            onMouseEnter={scheduleClose}
+            className="hidden md:inline-flex items-center gap-1 text-[13px] font-semibold text-black hover:text-[#2D6A4F] transition-colors"
           >
-            <span className="relative z-10">Portal Access</span>
-            <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-300" />
+            Apply
+            <svg width="9" height="9" viewBox="0 0 10 10" fill="none" className="opacity-55 mt-px">
+              <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
           </Link>
 
+          {/* Divider */}
+          <span className="hidden md:block w-px h-4 bg-black/[0.12]" aria-hidden="true" />
+
+          {/* Portal user icon */}
+          <Link
+            href="https://portal.primemeghalaya.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="PRIME Portal"
+            onMouseEnter={scheduleClose}
+            className="hidden md:flex items-center justify-center w-8 h-8 text-black/40 hover:text-black transition-colors"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </Link>
+
+          {/* Mobile toggle */}
           <button
-            className="md:hidden text-white/80 hover:text-white p-1 transition-colors"
+            className="md:hidden p-1 text-black/60 hover:text-black transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
           >
             <div className="w-5 flex flex-col gap-1.5">
-              <motion.span animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 6 : 0 }}  className="block h-px bg-current" />
+              <motion.span animate={{ rotate: menuOpen ? 45 : 0,  y: menuOpen ? 6 : 0  }} className="block h-px bg-current" />
               <motion.span animate={{ opacity: menuOpen ? 0 : 1 }}                        className="block h-px bg-current" />
               <motion.span animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -6 : 0 }} className="block h-px bg-current" />
             </div>
           </button>
         </div>
-
       </div>
+
+      {/* ── Mega menu panel ── */}
+      <AnimatePresence>
+        {openDropdown && navLinks.find(l => l.label === openDropdown)?.mega && (
+          <motion.div
+            key={openDropdown}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute left-0 right-0 top-[calc(100%+6px)] bg-white/[0.97] backdrop-blur-md border border-black/[0.07] rounded-2xl shadow-xl shadow-black/[0.08] z-50"
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
+            role="region"
+            aria-label={`${openDropdown} menu`}
+          >
+            <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8">
+              {(() => {
+                const link = navLinks.find(l => l.label === openDropdown);
+                if (!link?.mega) return null;
+                const { columns, featured } = link.mega;
+
+                return (
+                  <div className={`grid gap-10 ${featured ? "grid-cols-[repeat(auto-fit,minmax(160px,1fr))_280px]" : "grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"}`}>
+                    {/* Columns */}
+                    <div className={`grid gap-10 ${columns.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+                      {columns.map((col) => (
+                        <div key={col.heading}>
+                          <p className="text-[9px] font-bold tracking-[0.28em] uppercase text-black/30 mb-5">
+                            {col.heading}
+                          </p>
+                          <ul className="flex flex-col gap-1">
+                            {col.items.map((item) => (
+                              <li key={item.href}>
+                                <Link
+                                  href={item.href}
+                                  target={item.external ? "_blank" : undefined}
+                                  rel={item.external ? "noopener noreferrer" : undefined}
+                                  onClick={() => setOpenDropdown(null)}
+                                  className="group flex items-start gap-3 py-2 rounded-sm hover:bg-black/[0.04] -mx-2 px-2 transition-colors"
+                                >
+                                  {item.img && (
+                                    <div className="shrink-0 w-10 h-10 rounded-[2px] overflow-hidden bg-black/10 mt-0.5">
+                                      <Image
+                                        src={item.img}
+                                        alt=""
+                                        width={40}
+                                        height={40}
+                                        className="w-full h-full object-cover"
+                                      />
+                                    </div>
+                                  )}
+                                  <div>
+                                    <p className="text-[13px] font-semibold text-black/80 group-hover:text-black transition-colors leading-tight flex items-center gap-1.5">
+                                      {item.label}
+                                      {item.external && (
+                                        <svg className="w-2.5 h-2.5 opacity-40" viewBox="0 0 10 10" fill="none">
+                                          <path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                                        </svg>
+                                      )}
+                                    </p>
+                                    {item.subtitle && (
+                                      <p className="text-[11px] text-black/35 mt-0.5 leading-tight">{item.subtitle}</p>
+                                    )}
+                                  </div>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Featured card */}
+                    {featured && (
+                      <Link
+                        href={featured.href}
+                        onClick={() => setOpenDropdown(null)}
+                        className="group relative overflow-hidden rounded-sm bg-black flex flex-col min-h-[240px]"
+                      >
+                        <Image
+                          src={featured.img}
+                          alt=""
+                          fill
+                          className="object-cover opacity-40 group-hover:opacity-50 group-hover:scale-[1.03] transition-all duration-500"
+                        />
+                        <div className="relative z-10 flex flex-col justify-end flex-1 p-5">
+                          {featured.badge && (
+                            <span className="inline-block self-start mb-3 px-2 py-0.5 text-[9px] font-bold tracking-[0.2em] uppercase bg-[#2D6A4F] text-white rounded-[2px]">
+                              {featured.badge}
+                            </span>
+                          )}
+                          <p className="text-[14px] font-black text-white leading-snug mb-1.5">
+                            {featured.title}
+                          </p>
+                          <p className="text-[11px] text-white/50 leading-relaxed mb-4">
+                            {featured.desc}
+                          </p>
+                          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#2D6A4F] group-hover:gap-3 transition-all duration-300">
+                            {featured.cta} <span>→</span>
+                          </span>
+                        </div>
+                      </Link>
+                    )}
+                  </div>
+                );
+              })()}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Mobile menu ── */}
       <motion.div
@@ -197,7 +428,7 @@ export default function Navbar() {
         initial={false}
         animate={{ height: menuOpen ? "auto" : 0, opacity: menuOpen ? 1 : 0 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="md:hidden overflow-hidden bg-[#0d0d0d] border-t border-white/[0.08]"
+        className="md:hidden overflow-hidden bg-white/[0.97] backdrop-blur-md border-t border-black/[0.07]"
         aria-hidden={!menuOpen}
       >
         <div className="px-6 py-5 flex flex-col gap-1">
@@ -206,20 +437,20 @@ export default function Navbar() {
               <Link
                 href={link.href === "#" ? "/" : link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block py-3 text-white/75 hover:text-white text-sm font-medium border-b border-white/5"
+                className="block py-3 text-black/70 hover:text-black text-sm font-medium border-b border-black/[0.07]"
               >
                 {link.label}
               </Link>
-              {link.dropdown && (
+              {link.mega && (
                 <div className="pl-4 pt-1 pb-2 flex flex-col gap-0.5">
-                  {link.dropdown.map((sub) => (
+                  {link.mega.columns.flatMap(col => col.items).map((item) => (
                     <Link
-                      key={sub.href}
-                      href={sub.href}
+                      key={item.href + item.label}
+                      href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="block py-2 text-white/60 hover:text-[#9EC84A] text-[12px] transition-colors"
+                      className="block py-2 text-black/45 hover:text-[#2D6A4F] text-[12px] transition-colors"
                     >
-                      {sub.label}
+                      {item.label}
                     </Link>
                   ))}
                 </div>
@@ -229,9 +460,9 @@ export default function Navbar() {
           <Link
             href="https://portal.primemeghalaya.com/GeneralRegistraion.php"
             target="_blank"
-            className="mt-3 px-4 py-3 bg-[#9EC84A] text-black text-sm font-bold text-center rounded-sm"
+            className="mt-3 px-4 py-3 bg-black text-white text-sm font-bold text-center hover:bg-[#2D6A4F] hover:text-white transition-colors"
           >
-            Portal Access
+            Apply on PRIME Portal ↗
           </Link>
         </div>
       </motion.div>

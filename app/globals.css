@@ -4,36 +4,35 @@
   --font-sans: var(--font-host-grotesk);
 }
 
+/* ── Type scale ─────────────────────────────────────────────────────────── */
+:root {
+  --text-hero:    clamp(3.5rem, 9vw, 8.5rem);         /* 56–136px  hero    */
+  --text-display: clamp(2.5rem, 5.5vw, 5rem);         /* 40–80px   section */
+  --text-heading: clamp(1.75rem, 3.25vw, 3.25rem);    /* 28–52px   sub     */
+  --text-lead:    1.125rem;                            /* 18px      lead    */
+  --text-body:    1rem;                                /* 16px      body    */
+  --text-sm:      0.875rem;                            /* 14px      small   */
+  --text-label:   0.6875rem;                           /* 11px      label   */
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #e8e8e8;
+  background-color: #ffffff;
+  color: #111111;
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb { background: #9EC84A; border-radius: 2px; }
+::-webkit-scrollbar-track { background: #ffffff; }
+::-webkit-scrollbar-thumb { background: #2D6A4F; border-radius: 2px; }
 
 /* Selection */
-::selection { background: #9EC84A; color: #000; }
-
-/* Grain overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9997;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-}
+::selection { background: #2D6A4F; color: #000; }
 
 /* Marquee */
 @keyframes marquee {
@@ -49,21 +48,6 @@ body::after {
   animation-play-state: paused;
 }
 
-/* Glow pulse */
-@keyframes glow-pulse {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50%       { opacity: 0.25; transform: scale(1.08); }
-}
-.glow-pulse {
-  animation: glow-pulse 4s ease-in-out infinite;
-}
-
-/* Bar grow animation */
-@keyframes bar-grow {
-  from { transform: scaleY(0); }
-  to   { transform: scaleY(1); }
-}
-
 /* Skeleton shimmer */
 @keyframes shimmer {
   0%   { transform: translateX(-100%); }
@@ -73,26 +57,25 @@ body::after {
   animation: shimmer 1.8s ease-in-out infinite;
 }
 
-/* Focus ring — visible keyboard focus indicator */
+/* Focus ring */
 :focus-visible {
-  outline: 2px solid #9EC84A;
+  outline: 2px solid #2D6A4F;
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
-/* Skip-to-content — screen reader / keyboard navigation */
+/* Skip-to-content */
 .skip-link {
   position: absolute;
   top: -100%;
   left: 1rem;
   z-index: 10000;
   padding: 0.5rem 1.25rem;
-  background: #9EC84A;
+  background: #2D6A4F;
   color: #000;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  border-radius: 2px;
   transition: top 0.2s ease;
   white-space: nowrap;
 }

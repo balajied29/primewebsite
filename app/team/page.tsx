@@ -107,20 +107,22 @@ function Avatar({ name, img }: { name: string; img?: string }) {
 
   if (img) {
     return (
-      <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0">
+      <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
         <Image
           src={`/assets/team/${img}`}
           alt={name}
           fill
           className="object-cover object-top"
-          sizes="56px"
+          sizes="48px"
         />
       </div>
     );
   }
   return (
-    <div className="w-14 h-14 rounded-full bg-[#9EC84A]/15 flex items-center justify-center shrink-0">
-      <span className="text-[#9EC84A] font-bold text-sm">{initials}</span>
+    <div className="w-12 h-12 rounded-full bg-[#2D6A4F]/15 flex items-center justify-center shrink-0">
+      <span className="text-[#2D6A4F] font-bold" style={{ fontSize: "var(--text-sm)" }}>
+        {initials}
+      </span>
     </div>
   );
 }
@@ -135,23 +137,31 @@ export default function TeamPage() {
         subtitle="A dynamic mix of government officials, social entrepreneurs, and passionate changemakers — united by one mission."
       />
 
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col gap-16">
           {departments.map((dept) => (
             <div key={dept.name}>
-              <div className="flex items-center gap-4 mb-8">
-                <h2 className="text-[18px] font-black text-[#111111] uppercase tracking-wider">{dept.name}</h2>
-                <div className="flex-1 h-px bg-gray-100" />
+              <div className="flex items-center gap-6 mb-8">
+                <h2 className="font-black text-black uppercase tracking-wider shrink-0" style={{ fontSize: "var(--text-body)" }}>
+                  {dept.name}
+                </h2>
+                <div className="flex-1 h-px bg-black/[0.08]" />
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
                 {dept.members.map((m) => (
-                  <div key={m.name} className="flex items-center gap-4 p-4 rounded border border-gray-100 hover:border-[#9EC84A]/30 transition-colors">
+                  <div key={m.name} className="flex items-center gap-4 p-5 bg-white hover:bg-[#f5f5f5] transition-colors">
                     <Avatar name={m.name} img={m.img} />
                     <div className="min-w-0">
-                      <p className="text-[13px] font-bold text-[#111111] truncate">{m.name}</p>
-                      <p className="text-[11px] text-gray-500 leading-snug mt-0.5">{m.role}</p>
+                      <p className="font-bold text-black truncate" style={{ fontSize: "var(--text-sm)" }}>
+                        {m.name}
+                      </p>
+                      <p className="text-black/50 leading-snug mt-0.5" style={{ fontSize: "var(--text-sm)" }}>
+                        {m.role}
+                      </p>
                       {m.location && (
-                        <p className="text-[10px] text-[#9EC84A] font-semibold mt-1">{m.location}</p>
+                        <p className="text-[#2D6A4F] font-semibold mt-1" style={{ fontSize: "var(--text-label)" }}>
+                          {m.location}
+                        </p>
                       )}
                     </div>
                   </div>

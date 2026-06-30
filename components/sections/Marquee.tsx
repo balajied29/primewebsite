@@ -13,7 +13,7 @@ const text = items.join("   ·   ");
 
 export default function Marquee() {
   return (
-    <div className="bg-[#9EC84A] py-3.5 overflow-hidden">
+    <div className="bg-[#2D6A4F] py-3.5 overflow-hidden">
       <div className="animate-marquee select-none">
         {[text, text].map((t, i) => (
           <span key={i} className="flex items-center pr-20 text-[11px] font-bold tracking-[0.2em] uppercase text-black whitespace-nowrap">

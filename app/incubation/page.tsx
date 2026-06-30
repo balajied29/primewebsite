@@ -2,6 +2,7 @@ import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
+import { HiCheckCircle } from "react-icons/hi";
 
 const grants = [
   { label: "Top 35 entrepreneurs", amount: "₹2 Lakhs", desc: "Business Support Grant each" },
@@ -39,24 +40,32 @@ export default function IncubationPage() {
       />
 
       {/* Intro */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">The Programme</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-5">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                The Programme
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-8"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Chief Minister&apos;s E-Championship Challenge
             </h2>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-              Now in its <strong className="text-[#111111]">sixth edition</strong>, the CM&apos;s E-Championship Challenge is the flagship initiative behind PRIME — a state-wide, recurring annual event where Meghalaya&apos;s most promising entrepreneurs pitch in front of industry experts, government officials, and academic leaders.
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              Now in its <strong className="text-black">sixth edition</strong>, the CM&apos;s E-Championship Challenge is the flagship initiative behind PRIME — a state-wide, recurring annual event where Meghalaya&apos;s most promising entrepreneurs pitch in front of industry experts, government officials, and academic leaders.
             </p>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-              A cohort of <strong className="text-[#111111]">75 entrepreneurs</strong> is selected to join a dedicated <strong className="text-[#111111]">9-month intensive incubation programme</strong>, receiving structured support to launch, grow, and become funding-ready.
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              A cohort of <strong className="text-black">75 entrepreneurs</strong> is selected to join a dedicated <strong className="text-black">9-month intensive incubation programme</strong>, receiving structured support to launch, grow, and become funding-ready.
             </p>
-            <p className="text-[13px] text-gray-600 leading-[1.8]">
+            <p className="text-black/50 leading-[1.8]" style={{ fontSize: "var(--text-body)" }}>
               The Acceleration programme takes it further — fast-tracked mentorship, market access, and strategic assistance to help businesses compete at the next level.
             </p>
           </div>
-          <div className="relative aspect-[4/3] rounded overflow-hidden">
+          <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src="/assets/images/incubation.jpg"
               alt="PRIME Incubation Programme"
@@ -69,79 +78,113 @@ export default function IncubationPage() {
       </section>
 
       {/* Grants */}
-      <section className="bg-[#f9f9f9] py-20">
+      <section className="bg-[#f5f5f5] py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Financial Support</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Financial Support
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Business Support Grants
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
             {grants.map((g) => (
-              <div key={g.label} className="bg-white border border-gray-100 rounded p-7 hover:border-[#9EC84A]/40 transition-colors">
-                <p className="text-[11px] text-gray-400 font-semibold uppercase tracking-wide mb-2">{g.label}</p>
-                <p className="text-[36px] font-black text-[#9EC84A] leading-none mb-2">{g.amount}</p>
-                <p className="text-[12px] text-gray-500">{g.desc}</p>
+              <div key={g.label} className="bg-white p-8 flex flex-col">
+                <p className="text-black/35 font-semibold uppercase tracking-wide mb-4" style={{ fontSize: "var(--text-label)" }}>
+                  {g.label}
+                </p>
+                <p className="font-black text-[#2D6A4F] leading-[0.9] mb-4" style={{ fontSize: "var(--text-heading)" }}>
+                  {g.amount}
+                </p>
+                <p className="text-black/50 mt-auto" style={{ fontSize: "var(--text-sm)" }}>{g.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
-      <section className="bg-white py-20">
+      {/* Benefits + Objectives */}
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-16">
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">What You Get</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-8">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                What You Get
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-10"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Benefits of the programme
             </h2>
-            <ul className="flex flex-col gap-3">
+            <div className="border-t border-black/[0.08]">
               {benefits.map((b, i) => (
-                <li key={i} className="flex items-start gap-3 text-[13px] text-gray-600 leading-relaxed">
-                  <span className="w-5 h-5 rounded-full bg-[#9EC84A]/15 flex items-center justify-center shrink-0 mt-0.5">
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4L3.5 6.5L9 1" stroke="#9EC84A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </span>
-                  {b}
-                </li>
+                <div key={i} className="flex items-start gap-4 py-4 border-b border-black/[0.08]">
+                  <HiCheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={20} />
+                  <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-body)" }}>{b}</p>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Programme Goals</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-8">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Programme Goals
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-10"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Objectives of the challenge
             </h2>
-            <ul className="flex flex-col gap-3">
+            <div className="border-t border-black/[0.08]">
               {objectives.map((o, i) => (
-                <li key={i} className="flex items-start gap-3 text-[13px] text-gray-600 leading-relaxed">
-                  <span className="text-[#9EC84A] font-black text-xs mt-1">{String(i + 1).padStart(2, "0")}</span>
-                  {o}
-                </li>
+                <div key={i} className="flex items-start gap-4 py-4 border-b border-black/[0.08]">
+                  <HiCheckCircle className="text-[#2D6A4F] shrink-0 mt-0.5" size={20} />
+                  <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-body)" }}>{o}</p>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d0d0d] py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <h2 className="text-[28px] md:text-[40px] font-black text-white mb-4">
+      <section className="bg-[#1B4332] py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+              Apply Now
+            </p>
+          </div>
+          <h2
+            className="font-black text-white leading-[0.9] tracking-tight mb-8 max-w-2xl"
+            style={{ fontSize: "var(--text-heading)" }}
+          >
             Ready to apply?
           </h2>
-          <p className="text-gray-400 text-sm mb-8 max-w-md mx-auto">
+          <p className="text-white/40 leading-[1.75] mb-10 max-w-lg" style={{ fontSize: "var(--text-lead)" }}>
             Register on the PRIME portal and take the first step towards joining Meghalaya&apos;s most ambitious cohort of entrepreneurs.
           </p>
           <a
             href="https://portal.primemeghalaya.com/GeneralRegistraion.php"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-9 py-3 rounded-sm bg-[#9EC84A] text-white text-sm font-semibold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            style={{ fontSize: "var(--text-sm)" }}
           >
             Register on PRIME Portal
           </a>

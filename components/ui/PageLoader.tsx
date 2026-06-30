@@ -75,7 +75,7 @@ export default function PageLoader() {
           {/* Thin progress bar */}
           <div className="w-24 h-[1px] bg-white/10 relative overflow-hidden">
             <div
-              className="absolute inset-y-0 left-0 bg-[#9EC84A]"
+              className="absolute inset-y-0 left-0 bg-[#2D6A4F]"
               style={{ width: `${barWidth}%`, transition: "none" }}
             />
           </div>

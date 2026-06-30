@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FaFacebook, FaInstagram, FaLinkedinIn, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 const footerColumns = [
   {
@@ -16,6 +17,7 @@ const footerColumns = [
     heading: "Programmes",
     links: [
       { label: "CM Elevate",                  href: "/cm-elevate"                    },
+      { label: "PRIME Rural",                 href: "/prime-rural"                   },
       { label: "Fellowship",                  href: "/fellowship"                    },
       { label: "Market Linkage",              href: "/market-linkage"                },
       { label: "Business Facilitation",       href: "/business-facilitation"         },
@@ -37,55 +39,11 @@ const footerColumns = [
 ];
 
 const socials = [
-  {
-    label: "Facebook",
-    href: "#",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-      </svg>
-    ),
-  },
-  {
-    label: "Instagram",
-    href: "#",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
-    label: "LinkedIn",
-    href: "#",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
-        <circle cx="4" cy="4" r="2" />
-      </svg>
-    ),
-  },
-  {
-    label: "X",
-    href: "#",
-    icon: (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-      </svg>
-    ),
-  },
-  {
-    label: "YouTube",
-    href: "#",
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
-        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#111111" />
-      </svg>
-    ),
-  },
+  { label: "Facebook",  href: "#", Icon: FaFacebook   },
+  { label: "Instagram", href: "#", Icon: FaInstagram  },
+  { label: "LinkedIn",  href: "#", Icon: FaLinkedinIn },
+  { label: "X",         href: "#", Icon: FaXTwitter   },
+  { label: "YouTube",   href: "#", Icon: FaYoutube    },
 ];
 
 export default function Footer() {
@@ -118,9 +76,9 @@ export default function Footer() {
                     key={s.label}
                     href={s.href}
                     aria-label={s.label}
-                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#9EC84A] flex items-center justify-center text-white transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-[#52B788] flex items-center justify-center text-white transition-colors"
                   >
-                    {s.icon}
+                    <s.Icon size={15} />
                   </Link>
                 ))}
               </div>

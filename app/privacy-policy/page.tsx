@@ -30,9 +30,7 @@ const sections = [
   {
     id: "what-we-collect",
     heading: "3. Personal Data We Collect",
-    body: [
-      `This Website is primarily informational. We collect minimal personal data:`,
-    ],
+    body: [`This Website is primarily informational. We collect minimal personal data:`],
     list: [
       "Technical data: IP address, browser type, device type, and pages visited — collected automatically through server logs and analytics tools.",
       "Cookie data: Session and preference cookies (see Section 8 on Cookies).",
@@ -42,9 +40,7 @@ const sections = [
   {
     id: "purpose",
     heading: "4. Purpose and Legal Basis for Processing",
-    body: [
-      `We process personal data only for the purposes below and no other:`,
-    ],
+    body: [`We process personal data only for the purposes below and no other:`],
     table: [
       { purpose: "Website operation and security", basis: "Legitimate interest of the State" },
       { purpose: "Analytics to improve content and navigation", basis: "Consent (optional, cookie banner)" },
@@ -55,10 +51,7 @@ const sections = [
   {
     id: "data-sharing",
     heading: "5. Data Sharing and Disclosure",
-    body: [
-      `We do not sell, rent, or trade your personal data.`,
-      `We may share data with:`,
-    ],
+    body: [`We do not sell, rent, or trade your personal data.`, `We may share data with:`],
     list: [
       "Government departments and agencies of Meghalaya / Government of India for official functions.",
       "Technical service providers (hosting, analytics) under data processing agreements that restrict their use of the data.",
@@ -68,9 +61,7 @@ const sections = [
   {
     id: "retention",
     heading: "6. Data Retention",
-    body: [
-      `We retain data only as long as necessary for the purpose for which it was collected:`,
-    ],
+    body: [`We retain data only as long as necessary for the purpose for which it was collected:`],
     list: [
       "Server logs and analytics data: 12 months from collection.",
       "Cookie preference data: Up to 12 months in your browser.",
@@ -94,9 +85,7 @@ const sections = [
   {
     id: "cookies",
     heading: "8. Cookies",
-    body: [
-      `We use two categories of cookies:`,
-    ],
+    body: [`We use two categories of cookies:`],
     list: [
       "Essential cookies: Necessary for the site to function (session management, security). These cannot be declined.",
       "Analytics cookies: Help us understand how visitors use the site (e.g., most-visited pages). These are optional and require your consent via the cookie banner.",
@@ -168,9 +157,9 @@ export default function PrivacyPolicyPage() {
 
       <main id="main-content">
         {/* Quick-nav */}
-        <section className="bg-[#f9f9f9] border-b border-gray-100 py-8">
+        <section className="bg-[#f5f5f5] border-b border-black/[0.07] py-8">
           <div className="max-w-4xl mx-auto px-6 lg:px-10">
-            <p className="text-[11px] text-gray-400 font-semibold tracking-[0.15em] uppercase mb-4">
+            <p className="font-semibold tracking-[0.25em] uppercase text-black/35 mb-4" style={{ fontSize: "var(--text-label)" }}>
               Jump to section
             </p>
             <div className="flex flex-wrap gap-2">
@@ -178,7 +167,8 @@ export default function PrivacyPolicyPage() {
                 <a
                   key={s.id}
                   href={`#${s.id}`}
-                  className="text-[11px] px-3 py-1.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:border-[#9EC84A] hover:text-[#9EC84A] transition-colors"
+                  className="px-3 py-1.5 rounded-full bg-white border border-black/[0.07] text-black/50 hover:border-[#2D6A4F] hover:text-[#2D6A4F] transition-colors"
+                  style={{ fontSize: "var(--text-label)" }}
                 >
                   {s.heading.split(". ")[1] || s.heading}
                 </a>
@@ -188,16 +178,16 @@ export default function PrivacyPolicyPage() {
         </section>
 
         {/* Policy body */}
-        <section className="bg-white py-16 md:py-20">
+        <section className="bg-white py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-6 lg:px-10 space-y-14">
             {/* Preamble */}
-            <div className="p-6 bg-[#9EC84A]/8 border-l-4 border-[#9EC84A] rounded-sm">
-              <p className="text-[13px] text-[#111] leading-relaxed">
-                <strong>Summary (not a substitute for reading the full policy):</strong> The PRIME
+            <div className="p-6 bg-[#2D6A4F]/8 border-l-4 border-[#2D6A4F]">
+              <p className="text-black/70 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                <strong className="text-black">Summary (not a substitute for reading the full policy):</strong> The PRIME
                 Meghalaya website collects minimal data — primarily technical logs and optional
                 analytics. We do not sell data, we hold it securely within India, and you have clear
                 rights to access, correct, or erase your data under the{" "}
-                <strong>Digital Personal Data Protection Act, 2023</strong>. Registration and
+                <strong className="text-black">Digital Personal Data Protection Act, 2023</strong>. Registration and
                 business data submitted on the PRIME Portal (portal.primemeghalaya.com) is governed
                 by a separate policy on that portal.
               </p>
@@ -205,42 +195,51 @@ export default function PrivacyPolicyPage() {
 
             {sections.map((s) => (
               <div key={s.id} id={s.id} className="scroll-mt-24">
-                <h2 className="text-[18px] md:text-[22px] font-black text-[#111] mb-4 pb-3 border-b border-gray-100">
+                <h2
+                  className="font-black text-black mb-4 pb-3 border-b border-black/[0.08]"
+                  style={{ fontSize: "1.25rem" }}
+                >
                   {s.heading}
                 </h2>
                 {s.body.map((para, i) => (
-                  <p key={i} className="text-[13px] text-gray-600 leading-[1.85] mb-3">
+                  <p key={i} className="text-black/50 leading-[1.85] mb-3" style={{ fontSize: "var(--text-body)" }}>
                     {para}
                   </p>
                 ))}
                 {"list" in s && s.list && (
-                  <ul className="mt-3 space-y-2.5">
+                  <div className="mt-3 border-t border-black/[0.08]">
                     {s.list.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[13px] text-gray-600 leading-relaxed">
-                        <span className="w-5 h-5 rounded-full bg-[#9EC84A]/15 flex items-center justify-center shrink-0 mt-0.5">
-                          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
-                            <path d="M1 4L3.5 6.5L9 1" stroke="#9EC84A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
+                      <div key={i} className="flex items-start gap-4 py-3 border-b border-black/[0.08]">
+                        <span className="font-black text-[#2D6A4F] shrink-0 mt-0.5" style={{ fontSize: "var(--text-label)" }}>
+                          {String(i + 1).padStart(2, "0")}
                         </span>
-                        {item}
-                      </li>
+                        <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{item}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 )}
                 {"table" in s && s.table && (
-                  <div className="mt-4 overflow-x-auto">
-                    <table className="w-full text-[12px] border-collapse">
+                  <div className="mt-4 overflow-x-auto border border-black/[0.07]">
+                    <table className="w-full">
                       <thead>
-                        <tr className="bg-[#f9f9f9]">
-                          <th className="text-left px-4 py-2.5 text-[#111] font-semibold border border-gray-100 w-1/2">Purpose</th>
-                          <th className="text-left px-4 py-2.5 text-[#111] font-semibold border border-gray-100 w-1/2">Legal Basis</th>
+                        <tr className="bg-[#f5f5f5] border-b border-black/[0.07]">
+                          <th className="text-left px-5 py-3 text-black font-semibold border-r border-black/[0.07] w-1/2" style={{ fontSize: "var(--text-sm)" }}>
+                            Purpose
+                          </th>
+                          <th className="text-left px-5 py-3 text-black font-semibold w-1/2" style={{ fontSize: "var(--text-sm)" }}>
+                            Legal Basis
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
                         {s.table.map((row, i) => (
-                          <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-[#fafafa]"}>
-                            <td className="px-4 py-2.5 text-gray-600 border border-gray-100">{row.purpose}</td>
-                            <td className="px-4 py-2.5 text-gray-600 border border-gray-100">{row.basis}</td>
+                          <tr key={i} className={`border-b border-black/[0.07] ${i % 2 === 0 ? "bg-white" : "bg-[#f5f5f5]"}`}>
+                            <td className="px-5 py-3 text-black/50 border-r border-black/[0.07]" style={{ fontSize: "var(--text-sm)" }}>
+                              {row.purpose}
+                            </td>
+                            <td className="px-5 py-3 text-black/50" style={{ fontSize: "var(--text-sm)" }}>
+                              {row.basis}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -248,37 +247,39 @@ export default function PrivacyPolicyPage() {
                   </div>
                 )}
                 {"contact" in s && s.contact && (
-                  <div className="mt-4 p-5 bg-[#f9f9f9] border border-gray-100 rounded-sm space-y-2.5 text-[13px] text-gray-600">
-                    <p><strong className="text-[#111]">{s.contact.name}</strong></p>
-                    <p>{s.contact.dept}</p>
-                    <p>{s.contact.address}</p>
-                    <p>
+                  <div className="mt-4 p-6 bg-[#f5f5f5] border border-black/[0.07] space-y-3">
+                    <p className="font-bold text-black" style={{ fontSize: "var(--text-body)" }}>{s.contact.name}</p>
+                    <p className="text-black/50" style={{ fontSize: "var(--text-sm)" }}>{s.contact.dept}</p>
+                    <p className="text-black/50" style={{ fontSize: "var(--text-sm)" }}>{s.contact.address}</p>
+                    <p style={{ fontSize: "var(--text-sm)" }}>
                       Email:{" "}
-                      <a href={`mailto:${s.contact.email}`} className="text-[#9EC84A] underline underline-offset-2">
+                      <a href={`mailto:${s.contact.email}`} className="text-[#2D6A4F] underline underline-offset-2">
                         {s.contact.email}
                       </a>
                     </p>
-                    <p>Office hours: {s.contact.hours}</p>
-                    <p className="text-[#111] font-medium">{s.contact.resolution}</p>
+                    <p className="text-black/50" style={{ fontSize: "var(--text-sm)" }}>Office hours: {s.contact.hours}</p>
+                    <p className="font-semibold text-black" style={{ fontSize: "var(--text-sm)" }}>{s.contact.resolution}</p>
                   </div>
                 )}
                 {"note" in s && s.note && (
-                  <p className="mt-4 text-[12px] text-[#9EC84A] font-medium">{s.note}</p>
+                  <p className="mt-4 text-[#2D6A4F] font-medium" style={{ fontSize: "var(--text-sm)" }}>{s.note}</p>
                 )}
               </div>
             ))}
 
             {/* Related links */}
-            <div className="pt-6 border-t border-gray-100 flex flex-wrap gap-4">
+            <div className="pt-6 border-t border-black/[0.08] flex flex-wrap gap-6">
               <Link
                 href="/terms-and-conditions"
-                className="text-[12px] text-gray-500 hover:text-[#9EC84A] transition-colors underline underline-offset-2"
+                className="text-black/50 hover:text-[#2D6A4F] transition-colors underline underline-offset-2"
+                style={{ fontSize: "var(--text-sm)" }}
               >
                 Terms &amp; Conditions →
               </Link>
               <Link
                 href="/grievance"
-                className="text-[12px] text-gray-500 hover:text-[#9EC84A] transition-colors underline underline-offset-2"
+                className="text-black/50 hover:text-[#2D6A4F] transition-colors underline underline-offset-2"
+                style={{ fontSize: "var(--text-sm)" }}
               >
                 Grievance Redressal →
               </Link>

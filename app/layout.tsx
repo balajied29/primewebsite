@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Host_Grotesk } from "next/font/google";
+import { Host_Grotesk, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import PageLoader from "@/components/ui/PageLoader";
 import CookieConsent from "@/components/ui/CookieConsent";
@@ -8,6 +8,13 @@ const hostGrotesk = Host_Grotesk({
   subsets: ["latin"],
   variable: "--font-host-grotesk",
   weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -21,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${hostGrotesk.variable} scroll-smooth`}>
-      <body className="bg-[#0a0a0a] text-[#e8e8e8] antialiased">
+    <html lang="en" className={`${hostGrotesk.variable} ${cormorant.variable} scroll-smooth`}>
+      <body className="bg-white text-black antialiased">
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <PageLoader />
         {children}

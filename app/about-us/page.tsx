@@ -2,55 +2,32 @@ import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
+import {
+  HiOfficeBuilding,
+  HiLightningBolt,
+  HiHome,
+  HiUsers,
+  HiCreditCard,
+  HiAcademicCap,
+  HiChip,
+  HiTrendingUp,
+} from "react-icons/hi";
+import type { IconType } from "react-icons";
 
-const pillars = [
-  {
-    title: "Skills",
-    description:
-      "Skills and mindsets cut across the entire entrepreneurial journey, from aspiring to nano entrepreneur. We work with expert organisations to deliver entrepreneurial training, mentoring, and domain expertise.",
-  },
-  {
-    title: "Technology",
-    description:
-      "Technology is a crucial driver for disseminating knowledge, increasing enterprise productivity and operational efficiencies — from online peer networks to opportunity maps.",
-  },
-  {
-    title: "Market",
-    description:
-      "We build strong demand-side networks that support entrepreneurs while enabling them to recognise and serve local demand. Geography and sector-specific value chain support is at the core of our model.",
-  },
-  {
-    title: "Credit & Finance",
-    description:
-      "Timely, low-cost and adequate financing is essential. We create solutions to de-risk lending, reduce opex of loan servicing, and unlock new approaches to capital access for entrepreneurs.",
-  },
+const pillars: { title: string; description: string; Icon: IconType }[] = [
+  { title: "Skills",         description: "Skills and mindsets cut across the entire entrepreneurial journey, from aspiring to nano entrepreneur. We work with expert organisations to deliver entrepreneurial training, mentoring, and domain expertise.", Icon: HiLightningBolt },
+  { title: "Technology",     description: "Technology is a crucial driver for disseminating knowledge, increasing enterprise productivity and operational efficiencies — from online peer networks to opportunity maps.", Icon: HiChip },
+  { title: "Market",         description: "We build strong demand-side networks that support entrepreneurs while enabling them to recognise and serve local demand. Geography and sector-specific value chain support is at the core of our model.", Icon: HiTrendingUp },
+  { title: "Credit & Finance", description: "Timely, low-cost and adequate financing is essential. We create solutions to de-risk lending, reduce opex of loan servicing, and unlock new approaches to capital access for entrepreneurs.", Icon: HiCreditCard },
 ];
 
-const components = [
-  {
-    label: "PRIME Hubs",
-    detail: "Anchors for enterprise promotion set up in all district and block HQs, serving as centres for innovation, knowledge sharing, incubation and skill development.",
-  },
-  {
-    label: "Startup Enterprises",
-    detail: "~100 top entrepreneurial ideas selected and incubated annually — innovation-based and the vanguard of entrepreneurship in Meghalaya.",
-  },
-  {
-    label: "Nano & Micro Enterprises",
-    detail: "10,000 micro and nano enterprises incubated over five years through comprehensive business development, market access, technology and credit linkages.",
-  },
-  {
-    label: "Livelihood Enterprises",
-    detail: "Support for 50,000 livelihood enterprises through networks of Self Help Groups and Cooperative Societies.",
-  },
-  {
-    label: "Dedicated Funding Windows",
-    detail: "Interest subvention programs and credit enhancement through First Loan Default Guarantee (FLDG) schemes to improve access to bank finance.",
-  },
-  {
-    label: "Mindset Interventions",
-    detail: "Nurturing entrepreneurial mindsets in schools and colleges to create a culture of enterprise from the ground up.",
-  },
+const components: { label: string; detail: string; Icon: IconType }[] = [
+  { label: "PRIME Hubs",              detail: "Anchors for enterprise promotion set up in all district and block HQs, serving as centres for innovation, knowledge sharing, incubation and skill development.", Icon: HiOfficeBuilding },
+  { label: "Startup Enterprises",     detail: "~100 top entrepreneurial ideas selected and incubated annually — innovation-based and the vanguard of entrepreneurship in Meghalaya.", Icon: HiLightningBolt },
+  { label: "Nano & Micro Enterprises", detail: "10,000 micro and nano enterprises incubated over five years through comprehensive business development, market access, technology and credit linkages.", Icon: HiHome },
+  { label: "Livelihood Enterprises",  detail: "Support for 50,000 livelihood enterprises through networks of Self Help Groups and Cooperative Societies.", Icon: HiUsers },
+  { label: "Dedicated Funding Windows", detail: "Interest subvention programs and credit enhancement through First Loan Default Guarantee (FLDG) schemes to improve access to bank finance.", Icon: HiCreditCard },
+  { label: "Mindset Interventions",   detail: "Nurturing entrepreneurial mindsets in schools and colleges to create a culture of enterprise from the ground up.", Icon: HiAcademicCap },
 ];
 
 export default function AboutUsPage() {
@@ -64,37 +41,49 @@ export default function AboutUsPage() {
       />
 
       {/* Mission & Vision */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Our Story</p>
-            <h2 className="text-[28px] md:text-[36px] font-black text-[#111111] leading-snug mb-5">
-              Built to make entrepreneurship a preferred career for Meghalaya's youth
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Our Story
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-8"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
+              Built to make entrepreneurship a preferred career for Meghalaya&apos;s youth
             </h2>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-              In August 2018, the Government of Meghalaya launched the Meghalaya Startup Policy with one goal: to emerge as one of India's leading Startup Hubs through strategic partnerships, a conducive ecosystem, investment, and policy interventions.
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              In August 2018, the Government of Meghalaya launched the Meghalaya Startup Policy with one goal: to emerge as one of India&apos;s leading Startup Hubs through strategic partnerships, a conducive ecosystem, investment, and policy interventions.
             </p>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-              <strong className="text-[#111111]">PRIME</strong> — the Promotion and Incubation of Market-driven Enterprises programme — is the vehicle for implementing that policy. It provides holistic, systematic support to aspiring entrepreneurs through a network of PRIME Hubs that act as one-stop-shops across the state.
+            <p className="text-black/50 leading-[1.8] mb-8" style={{ fontSize: "var(--text-body)" }}>
+              <strong className="text-black">PRIME</strong> — the Promotion and Incubation of Market-driven Enterprises programme — is the vehicle for implementing that policy. It provides holistic, systematic support to aspiring entrepreneurs through a network of PRIME Hubs that act as one-stop-shops across the state.
             </p>
 
-            <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="border-l-2 border-[#9EC84A] pl-4">
-                <p className="text-xs font-bold text-[#9EC84A] uppercase tracking-wide mb-1">Vision</p>
-                <p className="text-[12px] text-gray-600 leading-relaxed">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="border-l-2 border-[#2D6A4F] pl-4">
+                <p className="font-bold text-[#2D6A4F] uppercase tracking-wide mb-2" style={{ fontSize: "var(--text-label)" }}>
+                  Vision
+                </p>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
                   Make entrepreneurship a preferred career choice through a dynamic, collaborative ecosystem with easy access to credit, technology, skilling, mentoring and high-leverage markets.
                 </p>
               </div>
-              <div className="border-l-2 border-[#111111] pl-4">
-                <p className="text-xs font-bold text-[#111111] uppercase tracking-wide mb-1">Mission</p>
-                <p className="text-[12px] text-gray-600 leading-relaxed">
+              <div className="border-l-2 border-black pl-4">
+                <p className="font-bold text-black uppercase tracking-wide mb-2" style={{ fontSize: "var(--text-label)" }}>
+                  Mission
+                </p>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
                   Provide systematic, targeted support to aspiring entrepreneurs through a network of PRIME Hubs — one-stop-shops for every segment of entrepreneur in Meghalaya.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="relative aspect-[4/3] rounded overflow-hidden">
+          <div className="relative aspect-[4/3] overflow-hidden">
             <Image
               src="/assets/images/prime-about.jpg"
               alt="PRIME Meghalaya team in action"
@@ -107,43 +96,69 @@ export default function AboutUsPage() {
       </section>
 
       {/* Key Components */}
-      <section className="bg-[#f9f9f9] py-20" id="overview">
+      <section className="bg-[#f5f5f5] py-24 md:py-36" id="overview">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Programme Architecture</p>
-            <h2 className="text-[28px] md:text-[36px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Programme Architecture
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Key components of the PRIME programme
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {components.map((c, i) => (
-              <div key={i} className="bg-white border border-gray-100 rounded p-6 hover:border-[#9EC84A]/40 transition-colors group">
-                <div className="w-7 h-7 rounded-full bg-[#9EC84A]/10 flex items-center justify-center mb-4 group-hover:bg-[#9EC84A]/20 transition-colors">
-                  <span className="text-[#9EC84A] font-black text-xs">{String(i + 1).padStart(2, "0")}</span>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
+            {components.map((c) => (
+              <div key={c.label} className="bg-white p-8 group hover:bg-[#f5f5f5] transition-colors">
+                <div className="w-12 h-12 flex items-center justify-center bg-[#74C69D]/20 mb-6">
+                  <span className="text-[#2D6A4F]"><c.Icon size={24} /></span>
                 </div>
-                <h3 className="text-[14px] font-bold text-[#111111] mb-2">{c.label}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{c.detail}</p>
+                <h3 className="font-bold text-black mb-3" style={{ fontSize: "var(--text-body)" }}>
+                  {c.label}
+                </h3>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                  {c.detail}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Strategy */}
-      <section className="bg-white py-20" id="journey">
+      {/* Strategy / Pillars */}
+      <section className="bg-white py-24 md:py-36" id="journey">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Our Approach</p>
-            <h2 className="text-[28px] md:text-[36px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Our Approach
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               The growth quartet that drives every entrepreneur
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-black/[0.07] border border-black/[0.07]">
             {pillars.map((p) => (
-              <div key={p.title} className="group">
-                <div className="h-1 w-10 bg-[#9EC84A] mb-5 group-hover:w-full transition-all duration-500" />
-                <h3 className="text-[15px] font-black text-[#111111] mb-3">{p.title}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{p.description}</p>
+              <div key={p.title} className="bg-white p-8 group hover:bg-[#f5f5f5] transition-colors">
+                <div className="w-12 h-12 flex items-center justify-center bg-[#74C69D]/20 mb-6">
+                  <span className="text-[#2D6A4F]"><p.Icon size={24} /></span>
+                </div>
+                <h3 className="font-black text-black mb-4" style={{ fontSize: "var(--text-lead)" }}>
+                  {p.title}
+                </h3>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                  {p.description}
+                </p>
               </div>
             ))}
           </div>
@@ -151,13 +166,25 @@ export default function AboutUsPage() {
       </section>
 
       {/* Partners */}
-      <section className="bg-[#0d0d0d] py-16" id="partners">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">In partnership with</p>
-          <h2 className="text-[24px] md:text-[32px] font-black text-white mb-8">Our institutional partners</h2>
-          <div className="flex flex-wrap items-center justify-center gap-10 opacity-70">
+      <section className="bg-[#1B4332] py-24 md:py-36" id="partners">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+              In partnership with
+            </p>
+          </div>
+          <h2
+            className="font-black text-white leading-[0.9] tracking-tight mb-16"
+            style={{ fontSize: "var(--text-heading)" }}
+          >
+            Our institutional partners
+          </h2>
+          <div className="flex flex-wrap items-center gap-x-12 gap-y-8 opacity-60">
             {["Government of Meghalaya", "IIM Calcutta Innovation Park", "MBMA", "MIE", "Startup India"].map((p) => (
-              <span key={p} className="text-white text-sm font-semibold tracking-wide">{p}</span>
+              <span key={p} className="text-white font-semibold tracking-wide" style={{ fontSize: "var(--text-body)" }}>
+                {p}
+              </span>
             ))}
           </div>
         </div>

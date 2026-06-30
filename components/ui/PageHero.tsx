@@ -6,18 +6,22 @@ interface PageHeroProps {
 
 export default function PageHero({ title, subtitle, breadcrumb }: PageHeroProps) {
   return (
-    <section id="main-content" className="bg-[#0d0d0d] pt-20 pb-16 px-6">
+    <section id="main-content" className="bg-[#1B4332] pt-44 pb-20 border-b border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {breadcrumb && (
-          <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-4">
-            {breadcrumb}
+        <div className="flex items-center gap-4 mb-10">
+          <span className="w-6 h-px bg-[#2D6A4F]" />
+          <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "0.6875rem" }}>
+            {breadcrumb ?? "PRIME Meghalaya"}
           </p>
-        )}
-        <h1 className="text-[36px] md:text-[52px] font-black text-white leading-[1.05] tracking-tight max-w-3xl">
+        </div>
+        <h1
+          className="font-black text-white leading-[0.9] tracking-tight max-w-4xl"
+          style={{ fontSize: "clamp(2.5rem, 5.5vw, 5rem)" }}
+        >
           {title}
         </h1>
         {subtitle && (
-          <p className="text-gray-400 text-base leading-relaxed mt-4 max-w-2xl">
+          <p className="text-white/40 leading-[1.75] mt-6 max-w-2xl" style={{ fontSize: "1.0625rem" }}>
             {subtitle}
           </p>
         )}

@@ -30,9 +30,7 @@ const clauses = [
   {
     id: "use",
     heading: "3. Permitted Use",
-    body: [
-      `You may use this Website for lawful purposes only. Specifically, you agree not to:`,
-    ],
+    body: [`You may use this Website for lawful purposes only. Specifically, you agree not to:`],
     list: [
       "Use the Website in any manner that could disable, overburden, or impair its functioning.",
       "Attempt to gain unauthorised access to any part of the Website, its servers, or any related system.",
@@ -112,9 +110,7 @@ const clauses = [
   {
     id: "contact",
     heading: "12. Contact",
-    body: [
-      `For questions regarding these Terms, please contact:`,
-    ],
+    body: [`For questions regarding these Terms, please contact:`],
     contact: {
       name: "PRIME Meghalaya",
       dept: "Department of Commerce & Industries, Government of Meghalaya",
@@ -135,19 +131,20 @@ export default function TermsPage() {
       />
 
       <main id="main-content">
-        <section className="bg-white py-16 md:py-20">
+        <section className="bg-white py-16 md:py-24">
           <div className="max-w-4xl mx-auto px-6 lg:px-10 space-y-12">
             {/* Quick-nav */}
-            <div className="p-5 bg-[#f9f9f9] border border-gray-100 rounded-sm">
-              <p className="text-[11px] text-gray-400 font-semibold tracking-[0.15em] uppercase mb-3">
+            <div className="p-6 bg-[#f5f5f5] border border-black/[0.07]">
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35 mb-4" style={{ fontSize: "var(--text-label)" }}>
                 Contents
               </p>
-              <div className="flex flex-wrap gap-x-6 gap-y-1.5">
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
                 {clauses.map((c) => (
                   <a
                     key={c.id}
                     href={`#${c.id}`}
-                    className="text-[12px] text-gray-500 hover:text-[#9EC84A] transition-colors"
+                    className="text-black/50 hover:text-[#2D6A4F] transition-colors"
+                    style={{ fontSize: "var(--text-sm)" }}
                   >
                     {c.heading}
                   </a>
@@ -157,34 +154,37 @@ export default function TermsPage() {
 
             {clauses.map((c) => (
               <div key={c.id} id={c.id} className="scroll-mt-24">
-                <h2 className="text-[18px] md:text-[20px] font-black text-[#111] mb-4 pb-3 border-b border-gray-100">
+                <h2
+                  className="font-black text-black mb-4 pb-3 border-b border-black/[0.08]"
+                  style={{ fontSize: "1.25rem" }}
+                >
                   {c.heading}
                 </h2>
                 {c.body.map((para, i) => (
-                  <p key={i} className="text-[13px] text-gray-600 leading-[1.85] mb-3">
+                  <p key={i} className="text-black/50 leading-[1.85] mb-3" style={{ fontSize: "var(--text-body)" }}>
                     {para}
                   </p>
                 ))}
                 {"list" in c && c.list && (
-                  <ul className="mt-3 space-y-2.5">
+                  <div className="mt-3 border-t border-black/[0.08]">
                     {c.list.map((item, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[13px] text-gray-600 leading-relaxed">
-                        <span className="text-[#9EC84A] font-black text-xs mt-1 shrink-0">
+                      <div key={i} className="flex items-start gap-4 py-3 border-b border-black/[0.08]">
+                        <span className="font-black text-[#2D6A4F] shrink-0 mt-0.5" style={{ fontSize: "var(--text-label)" }}>
                           {String(i + 1).padStart(2, "0")}
                         </span>
-                        {item}
-                      </li>
+                        <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{item}</p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 )}
                 {"contact" in c && c.contact && (
-                  <div className="mt-4 p-5 bg-[#f9f9f9] border border-gray-100 rounded-sm space-y-2 text-[13px] text-gray-600">
-                    <p><strong className="text-[#111]">{c.contact.name}</strong></p>
-                    <p>{c.contact.dept}</p>
-                    <p>{c.contact.address}</p>
-                    <p>
+                  <div className="mt-4 p-6 bg-[#f5f5f5] border border-black/[0.07] space-y-2">
+                    <p className="font-bold text-black" style={{ fontSize: "var(--text-body)" }}>{c.contact.name}</p>
+                    <p className="text-black/50" style={{ fontSize: "var(--text-sm)" }}>{c.contact.dept}</p>
+                    <p className="text-black/50" style={{ fontSize: "var(--text-sm)" }}>{c.contact.address}</p>
+                    <p style={{ fontSize: "var(--text-sm)" }}>
                       Email:{" "}
-                      <a href={`mailto:${c.contact.email}`} className="text-[#9EC84A] underline underline-offset-2">
+                      <a href={`mailto:${c.contact.email}`} className="text-[#2D6A4F] underline underline-offset-2">
                         {c.contact.email}
                       </a>
                     </p>
@@ -194,16 +194,18 @@ export default function TermsPage() {
             ))}
 
             {/* Related */}
-            <div className="pt-6 border-t border-gray-100 flex flex-wrap gap-4">
+            <div className="pt-6 border-t border-black/[0.08] flex flex-wrap gap-6">
               <Link
                 href="/privacy-policy"
-                className="text-[12px] text-gray-500 hover:text-[#9EC84A] transition-colors underline underline-offset-2"
+                className="text-black/50 hover:text-[#2D6A4F] transition-colors underline underline-offset-2"
+                style={{ fontSize: "var(--text-sm)" }}
               >
                 Privacy Policy →
               </Link>
               <Link
                 href="/grievance"
-                className="text-[12px] text-gray-500 hover:text-[#9EC84A] transition-colors underline underline-offset-2"
+                className="text-black/50 hover:text-[#2D6A4F] transition-colors underline underline-offset-2"
+                style={{ fontSize: "var(--text-sm)" }}
               >
                 Grievance Redressal →
               </Link>

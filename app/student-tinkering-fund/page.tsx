@@ -41,40 +41,62 @@ export default function StudentTinkeringFundPage() {
       />
 
       {/* Intro */}
-      <section className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 max-w-3xl">
-          <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">About the Fund</p>
-          <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-5">
-            Funding for student innovators
-          </h2>
-          <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-            PRIME has established a dedicated funding vehicle for students or student teams working on innovative, entrepreneurship-related business and research ideas. This initiative is part of PRIME&apos;s Entrepreneurship Promotion and Development Programmes (EPDP) for academic institutes in Meghalaya.
-          </p>
-          <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
-            Based on recommendations brought forward by the E-Cells of PRIME-supported academic institutes, an initial lump sum of ₹25,000 is disbursed directly to the student team — with a second tranche of ₹25,000 available to top performers.
-          </p>
-          <p className="text-[13px] text-gray-600 leading-[1.8]">
-            Students who successfully implement their funded project are closely linked to PRIME&apos;s broader ecosystem — gaining access to pre-incubation, incubation, and advanced funding programmes.
-          </p>
+      <section className="bg-white py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                About the Fund
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-8"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
+              Funding for student innovators
+            </h2>
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              PRIME has established a dedicated funding vehicle for students or student teams working on innovative, entrepreneurship-related business and research ideas. This initiative is part of PRIME&apos;s Entrepreneurship Promotion and Development Programmes (EPDP) for academic institutes in Meghalaya.
+            </p>
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
+              Based on recommendations brought forward by the E-Cells of PRIME-supported academic institutes, an initial lump sum of ₹25,000 is disbursed directly to the student team — with a second tranche of ₹25,000 available to top performers.
+            </p>
+            <p className="text-black/50 leading-[1.8]" style={{ fontSize: "var(--text-body)" }}>
+              Students who successfully implement their funded project are closely linked to PRIME&apos;s broader ecosystem — gaining access to pre-incubation, incubation, and advanced funding programmes.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Tranches */}
-      <section className="bg-[#f9f9f9] py-20">
+      <section className="bg-[#f5f5f5] py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Grant Structure</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Grant Structure
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Up to ₹50,000 in two tranches
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-px bg-black/[0.07] border border-black/[0.07]">
             {tranches.map((t) => (
-              <div key={t.label} className="bg-white border border-gray-100 rounded p-8">
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-2">{t.label}</p>
-                <p className="text-[44px] font-black text-[#9EC84A] leading-none mb-3">{t.amount}</p>
-                <p className="text-[12px] text-gray-600 leading-relaxed mb-3">{t.desc}</p>
-                <p className="text-[11px] text-gray-400 italic">{t.condition}</p>
+              <div key={t.label} className="bg-white p-8 flex flex-col">
+                <p className="text-black/35 font-semibold uppercase tracking-wide mb-4" style={{ fontSize: "var(--text-label)" }}>
+                  {t.label}
+                </p>
+                <p className="font-black text-[#2D6A4F] leading-[0.9] mb-4" style={{ fontSize: "var(--text-heading)" }}>
+                  {t.amount}
+                </p>
+                <p className="text-black/50 leading-relaxed mb-3 mt-auto" style={{ fontSize: "var(--text-body)" }}>{t.desc}</p>
+                <p className="text-black/35 italic" style={{ fontSize: "var(--text-sm)" }}>{t.condition}</p>
               </div>
             ))}
           </div>
@@ -82,49 +104,73 @@ export default function StudentTinkeringFundPage() {
       </section>
 
       {/* How to apply */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">How It Works</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                How It Works
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               The application process
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-black/[0.07] border border-black/[0.07]">
             {steps.map((s) => (
-              <div key={s.step} className="group">
-                <div className="h-1 w-10 bg-[#9EC84A] mb-5 group-hover:w-full transition-all duration-500" />
-                <p className="text-[#9EC84A] font-black text-xs mb-2">{s.step}</p>
-                <h3 className="text-[14px] font-black text-[#111111] mb-2">{s.title}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{s.desc}</p>
+              <div key={s.step} className="bg-white p-8 group hover:bg-[#f5f5f5] transition-colors">
+                <div className="h-px w-10 bg-[#2D6A4F] mb-8 group-hover:w-full transition-all duration-500" />
+                <p className="font-black text-[#2D6A4F] mb-3" style={{ fontSize: "var(--text-label)" }}>
+                  {s.step}
+                </p>
+                <h3 className="font-black text-black mb-3" style={{ fontSize: "var(--text-body)" }}>
+                  {s.title}
+                </h3>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
-          <p className="text-[12px] text-gray-400 mt-10 max-w-2xl">
+          <p className="text-black/40 mt-8 max-w-2xl" style={{ fontSize: "var(--text-sm)" }}>
             Not sure if your institute has an E-Cell? Contact PRIME directly at{" "}
-            <a href="mailto:info@primemeghalaya.com" className="text-[#9EC84A] hover:underline">info@primemeghalaya.com</a>{" "}
+            <a href="mailto:info@primemeghalaya.com" className="text-[#2D6A4F] hover:underline">
+              info@primemeghalaya.com
+            </a>{" "}
             and we&apos;ll guide you to the right resource.
           </p>
         </div>
       </section>
 
       {/* What's next */}
-      <section className="bg-[#f9f9f9] py-20">
+      <section className="bg-[#f5f5f5] py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Your Journey After</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Your Journey After
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               The Tinkering Fund is just the beginning
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
             {pathways.map((p, i) => (
-              <div key={i} className="bg-white border border-gray-100 rounded p-6 hover:border-[#9EC84A]/40 transition-colors">
-                <div className="w-7 h-7 rounded-full bg-[#9EC84A]/10 flex items-center justify-center mb-4">
-                  <span className="text-[#9EC84A] font-black text-xs">{String(i + 1).padStart(2, "0")}</span>
-                </div>
-                <h3 className="text-[14px] font-bold text-[#111111] mb-2">{p.label}</h3>
-                <p className="text-[12px] text-gray-500 leading-relaxed">{p.desc}</p>
+              <div key={i} className="bg-white p-8 group hover:bg-[#f5f5f5] transition-colors">
+                <p className="font-black text-[#2D6A4F] mb-5" style={{ fontSize: "var(--text-label)" }}>
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="font-bold text-black mb-3" style={{ fontSize: "var(--text-body)" }}>{p.label}</h3>
+                <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{p.desc}</p>
               </div>
             ))}
           </div>
@@ -132,15 +178,27 @@ export default function StudentTinkeringFundPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d0d0d] py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <h2 className="text-[28px] md:text-[36px] font-black text-white mb-4">Are you a student with a big idea?</h2>
-          <p className="text-gray-400 text-sm mb-8 max-w-md mx-auto">
+      <section className="bg-[#1B4332] py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+              Get Started
+            </p>
+          </div>
+          <h2
+            className="font-black text-white leading-[0.9] tracking-tight mb-8 max-w-2xl"
+            style={{ fontSize: "var(--text-heading)" }}
+          >
+            Are you a student with a big idea?
+          </h2>
+          <p className="text-white/40 leading-[1.75] mb-10 max-w-lg" style={{ fontSize: "var(--text-lead)" }}>
             Talk to your college E-Cell or contact PRIME directly. Your idea could be the next success story from Meghalaya.
           </p>
           <a
             href="mailto:info@primemeghalaya.com"
-            className="inline-block px-9 py-3 rounded-sm bg-[#9EC84A] text-white text-sm font-semibold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            style={{ fontSize: "var(--text-sm)" }}
           >
             Contact PRIME
           </a>

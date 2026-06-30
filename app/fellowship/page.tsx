@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageHero from "@/components/ui/PageHero";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 
 const supportAreas = [
   "Registration & Licensing",
@@ -74,66 +75,92 @@ export default function FellowshipPage() {
       />
 
       {/* Overview */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">About the Fellowship</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug mb-5">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                About the Fellowship
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight mb-8"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               A bridge between aspiration and opportunity
             </h2>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
               The PRIME-Sauramandala Rural Entrepreneurship Fellowship (PSREF) is a rural entrepreneurship programme by the Planning Department of the Government of Meghalaya, in collaboration with the Sauramandala Foundation.
             </p>
-            <p className="text-[13px] text-gray-600 leading-[1.8] mb-4">
+            <p className="text-black/50 leading-[1.8] mb-4" style={{ fontSize: "var(--text-body)" }}>
               In a world that is rapidly urbanising, PSREF hopes to build a conducive ecosystem for entrepreneurs from the most disconnected remote areas. This fellowship is more than just a programme — it&apos;s a bridge between aspirations and opportunities, between traditional wisdom and modern innovation.
             </p>
-            <p className="text-[13px] text-gray-600 leading-[1.8]">
+            <p className="text-black/50 leading-[1.8]" style={{ fontSize: "var(--text-body)" }}>
               Fellows and Associates are placed in remote blocks of Meghalaya, where they actively promote rural entrepreneurship — working full-time to identify promising entrepreneurs and address their challenges.
             </p>
           </div>
           <div>
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-4">Entrepreneurs&apos; Support Areas</p>
-            <ul className="flex flex-col gap-2 mb-8">
+            <ImagePlaceholder label="Fellowship in the Field" className="aspect-[4/3] mb-10" />
+            <div className="flex items-center gap-4 mb-8">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Entrepreneurs&apos; Support Areas
+              </p>
+            </div>
+            <div className="border-t border-black/[0.08] mb-10">
               {supportAreas.map((a, i) => (
-                <li key={i} className="flex items-center gap-3 text-[13px] text-gray-600">
-                  <span className="w-5 h-5 rounded-full bg-[#9EC84A]/15 flex items-center justify-center shrink-0">
-                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                      <path d="M1 4L3.5 6.5L9 1" stroke="#9EC84A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                <div key={i} className="flex items-center gap-4 py-4 border-b border-black/[0.08]">
+                  <span className="font-black text-[#2D6A4F] shrink-0" style={{ fontSize: "var(--text-label)" }}>
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  {a}
-                </li>
+                  <p className="text-black/50" style={{ fontSize: "var(--text-body)" }}>{a}</p>
+                </div>
               ))}
-            </ul>
-            <div className="bg-[#f9f9f9] rounded p-5 text-[12px] text-gray-500 leading-relaxed border border-gray-100">
-              Upon completion, Fellows and Associates receive a comprehensive certificate highlighting achievements and expertise — and are prepared for careers in rural development, startup incubation, or entrepreneurship promotion with national or international organisations.
+            </div>
+            <div className="bg-[#f5f5f5] p-6 border border-black/[0.07]">
+              <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                Upon completion, Fellows and Associates receive a comprehensive certificate highlighting achievements and expertise — and are prepared for careers in rural development, startup incubation, or entrepreneurship promotion with national or international organisations.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Programme Phases */}
-      <section className="bg-[#f9f9f9] py-20">
+      <section className="bg-[#f5f5f5] py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Programme Structure</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Programme Structure
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               18 months across three phases
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-px bg-black/[0.07] border border-black/[0.07]">
             {phases.map((p) => (
-              <div key={p.phase} className="bg-white border border-gray-100 rounded p-6">
-                <p className="text-[10px] text-[#9EC84A] font-bold uppercase tracking-widest mb-1">{p.phase} — {p.duration}</p>
-                <h3 className="text-[15px] font-black text-[#111111] mb-4">{p.title}</h3>
-                <ul className="flex flex-col gap-2">
+              <div key={p.phase} className="bg-white p-8">
+                <p className="font-bold text-[#2D6A4F] uppercase tracking-widest mb-1" style={{ fontSize: "var(--text-label)" }}>
+                  {p.phase} — {p.duration}
+                </p>
+                <h3 className="font-black text-black mb-6" style={{ fontSize: "var(--text-lead)" }}>
+                  {p.title}
+                </h3>
+                <div className="border-t border-black/[0.08]">
                   {p.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-[12px] text-gray-500 leading-relaxed">
-                      <span className="text-[#9EC84A] font-bold shrink-0 mt-0.5">—</span>
-                      {item}
-                    </li>
+                    <div key={i} className="flex items-start gap-3 py-3 border-b border-black/[0.08]">
+                      <span className="text-[#2D6A4F] font-bold shrink-0 mt-0.5">—</span>
+                      <p className="text-black/50 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>{item}</p>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
@@ -141,19 +168,29 @@ export default function FellowshipPage() {
       </section>
 
       {/* Roles */}
-      <section className="bg-white py-20">
+      <section className="bg-white py-24 md:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="max-w-xl mb-12">
-            <p className="text-[#9EC84A] text-xs font-semibold tracking-[0.2em] uppercase mb-3">Who Can Apply</p>
-            <h2 className="text-[26px] md:text-[32px] font-black text-[#111111] leading-snug">
+          <div className="max-w-xl mb-14">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="w-8 h-px bg-[#2D6A4F]" />
+              <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+                Who Can Apply
+              </p>
+            </div>
+            <h2
+              className="font-black text-black leading-[0.9] tracking-tight"
+              style={{ fontSize: "var(--text-heading)" }}
+            >
               Fellows & Associates
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-px bg-black/[0.07] border border-black/[0.07]">
             {roles.map((r) => (
-              <div key={r.title} className="border border-gray-100 rounded p-7">
-                <h3 className="text-[16px] font-black text-[#111111] mb-5">{r.title}</h3>
-                <dl className="grid grid-cols-2 gap-y-4 gap-x-6">
+              <div key={r.title} className="bg-white p-8">
+                <h3 className="font-black text-black mb-8" style={{ fontSize: "var(--text-heading)" }}>
+                  {r.title}
+                </h3>
+                <dl className="grid grid-cols-2 gap-y-6 gap-x-6 mb-6">
                   {[
                     { label: "Origin", val: r.origin },
                     { label: "Duration", val: r.duration },
@@ -162,12 +199,16 @@ export default function FellowshipPage() {
                     { label: "Slots", val: r.slots },
                   ].map((d) => (
                     <div key={d.label}>
-                      <dt className="text-[10px] text-gray-400 font-semibold uppercase tracking-wide mb-0.5">{d.label}</dt>
-                      <dd className="text-[12px] font-semibold text-[#111111]">{d.val}</dd>
+                      <dt className="text-black/35 font-semibold uppercase tracking-wide mb-1" style={{ fontSize: "var(--text-label)" }}>
+                        {d.label}
+                      </dt>
+                      <dd className="font-semibold text-black" style={{ fontSize: "var(--text-sm)" }}>{d.val}</dd>
                     </div>
                   ))}
                 </dl>
-                <p className="text-[11px] text-gray-400 mt-4 leading-relaxed">{r.qualification}</p>
+                <p className="text-black/40 leading-relaxed border-t border-black/[0.07] pt-4" style={{ fontSize: "var(--text-sm)" }}>
+                  {r.qualification}
+                </p>
               </div>
             ))}
           </div>
@@ -175,15 +216,27 @@ export default function FellowshipPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0d0d0d] py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
-          <h2 className="text-[28px] md:text-[36px] font-black text-white mb-4">Be the change in rural Meghalaya</h2>
-          <p className="text-gray-400 text-sm mb-8 max-w-lg mx-auto">
+      <section className="bg-[#1B4332] py-24 md:py-36">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center gap-4 mb-10">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-white/30" style={{ fontSize: "var(--text-label)" }}>
+              Apply
+            </p>
+          </div>
+          <h2
+            className="font-black text-white leading-[0.9] tracking-tight mb-8 max-w-2xl"
+            style={{ fontSize: "var(--text-heading)" }}
+          >
+            Be the change in rural Meghalaya
+          </h2>
+          <p className="text-white/40 leading-[1.75] mb-10 max-w-lg" style={{ fontSize: "var(--text-lead)" }}>
             Applications are reviewed on a rolling basis. Early applications are strongly encouraged. Contact us at info@primemeghalaya.com or info@sauramandala.org.
           </p>
           <a
             href="mailto:info@primemeghalaya.com"
-            className="inline-block px-9 py-3 rounded-sm bg-[#9EC84A] text-white text-sm font-semibold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            style={{ fontSize: "var(--text-sm)" }}
           >
             Apply Now
           </a>

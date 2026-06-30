@@ -3,113 +3,166 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import AnimateIn from "@/components/ui/AnimateIn";
+import {
+  HiOfficeBuilding,
+  HiUsers,
+  HiCurrencyRupee,
+  HiAcademicCap,
+  HiGlobe,
+  HiBriefcase,
+} from "react-icons/hi";
+import type { IconType } from "react-icons";
 
-const services = [
+const services: { num: string; title: string; description: string; href: string; Icon: IconType }[] = [
   {
+    num: "01",
     title: "Incubation",
-    description: "9-month intensive programme with co-working, mentoring, media visibility, and a certificate from IIM Calcutta Innovation Park.",
+    description: "9-month programme with co-working, mentorship, and IIM Calcutta certification.",
     href: "/incubation",
-    featured: true,
+    Icon: HiOfficeBuilding,
   },
   {
+    num: "02",
     title: "Mentorship",
-    description: "One-on-one access to founders, industry leaders, and domain experts from across India.",
+    description: "Direct access to founders, industry leaders, and domain experts nationwide.",
     href: "/about-us",
-    featured: false,
+    Icon: HiUsers,
   },
   {
+    num: "03",
     title: "Funding & Schemes",
-    description: "Grants, zero-interest loans, FLDG credit enhancement, and direct startup investment — up to ₹75 Lakhs.",
+    description: "Grants, zero-interest loans, and startup investment — up to ₹75 Lakhs.",
     href: "/funding-schemes",
-    featured: false,
+    Icon: HiCurrencyRupee,
   },
   {
+    num: "04",
     title: "Training",
-    description: "Sector-specific training and advanced skill programmes at PRIME-supported Training Centres across the state.",
+    description: "Sector-specific skill programmes at PRIME-supported Training Centres statewide.",
     href: "/trainingcentres",
-    featured: false,
+    Icon: HiAcademicCap,
   },
   {
+    num: "05",
     title: "Market Access",
-    description: "Exhibitions, ONDC onboarding, B2B buyer connections, and exposure at national and international trade shows.",
+    description: "Exhibitions, ONDC onboarding, B2B connections, and national trade show exposure.",
     href: "/market-linkage",
-    featured: false,
+    Icon: HiGlobe,
   },
   {
+    num: "06",
     title: "Business Facilitation",
-    description: "Government liaison, awareness programmes, and complete handholding from idea to registered, operational business.",
+    description: "Government liaison and complete handholding from idea to operational business.",
     href: "/business-facilitation",
-    featured: false,
+    Icon: HiBriefcase,
   },
 ];
 
 export default function WhatPrimeDoes() {
   return (
-    <section id="services" className="bg-[#0a0a0a] py-24 md:py-32">
+    <section id="services" className="bg-white py-24 md:py-36 border-t border-black/[0.06]">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <AnimateIn>
+          <div className="flex items-center gap-4 mb-16">
+            <span className="w-8 h-px bg-[#2D6A4F]" />
+            <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
+              What We Offer
+            </p>
+          </div>
+        </AnimateIn>
+
+        <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
           <AnimateIn direction="left">
-            <p className="text-[11px] text-[#9EC84A] font-semibold tracking-[0.25em] uppercase mb-3">What We Offer</p>
-            <h2
-              className="font-black text-white leading-[0.95] tracking-tight"
-              style={{ fontSize: "clamp(32px, 4.5vw, 60px)" }}
-            >
-              Everything a founder<br />needs to succeed.
+            <h2 className="font-black text-black leading-[0.9] tracking-tight" style={{ fontSize: "var(--text-display)" }}>
+              Everything a founder<br />
+              needs to<br />
+              <span className="text-[#2D6A4F]">succeed.</span>
             </h2>
           </AnimateIn>
-          <AnimateIn direction="right" delay={0.1}>
-            <Link
-              href="/about-us"
-              className="group inline-flex items-center gap-2 text-[13px] font-semibold text-white/50 hover:text-[#9EC84A] transition-colors duration-300"
-            >
-              Full programme overview
-              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </Link>
+          <AnimateIn direction="right" delay={0.1} className="flex items-end">
+            <div className="flex flex-col gap-4">
+              <p className="text-black/45 leading-[1.75]" style={{ fontSize: "var(--text-lead)" }}>
+                PRIME delivers six interlocking pillars of support — from your first idea to your fastest growth stage.
+              </p>
+              <Link
+                href="/about-us"
+                className="group inline-flex items-center gap-3 font-semibold text-black hover:text-[#2D6A4F] transition-colors duration-300 self-start"
+                style={{ fontSize: "var(--text-sm)" }}
+              >
+                Full programme overview
+                <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+              </Link>
+            </div>
           </AnimateIn>
         </div>
 
-        {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {services.map((svc, i) => (
-            <AnimateIn key={svc.title} delay={i * 0.06} direction="up">
-              <motion.div
-                className={`h-full rounded border p-7 flex flex-col group relative overflow-hidden ${
-                  svc.featured
-                    ? "bg-[#9EC84A] border-[#9EC84A] lg:col-span-1"
-                    : "bg-[#111] border-white/8 hover:border-[#9EC84A]/30"
-                }`}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        {/* Visual process grid — bold icon boxes, dark invert on hover */}
+        <AnimateIn delay={0.08}>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-px bg-black/[0.07] border border-black/[0.07] mb-14">
+            {services.map((svc) => (
+              <Link
+                key={svc.num}
+                href={svc.href}
+                className="group flex flex-col items-center text-center gap-4 p-5 md:p-7 bg-white hover:bg-[#1B4332] transition-colors duration-300"
               >
-                {/* Top accent */}
-                <div className={`w-8 h-0.5 mb-6 ${svc.featured ? "bg-black/30" : "bg-[#9EC84A]"}`} />
+                <div className="w-14 h-14 flex items-center justify-center bg-[#74C69D]/20 group-hover:bg-[#2D6A4F] transition-colors duration-300 shrink-0">
+                  <span className="text-[#2D6A4F] group-hover:text-white transition-colors duration-300">
+                    <svc.Icon size={28} />
+                  </span>
+                </div>
+                <div>
+                  <p className="font-bold text-black/20 group-hover:text-white/20 transition-colors leading-none mb-1.5 tracking-[0.14em]" style={{ fontSize: "9px" }}>
+                    {svc.num}
+                  </p>
+                  <p className="font-black text-black group-hover:text-white text-[12px] md:text-[13px] leading-tight transition-colors">
+                    {svc.title}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </AnimateIn>
 
-                <h3 className={`text-[17px] font-black mb-3 ${svc.featured ? "text-black" : "text-white"}`}>
-                  {svc.title}
-                </h3>
-                <p className={`text-[12px] leading-relaxed flex-1 ${svc.featured ? "text-black/60" : "text-white/45"}`}>
-                  {svc.description}
-                </p>
+        {/* Detailed list */}
+        <div className="border-t border-black/[0.08]">
+          {services.map((svc, i) => (
+            <AnimateIn key={svc.title} delay={i * 0.04}>
+              <motion.div
+                className="group grid grid-cols-[44px_1fr_auto] md:grid-cols-[56px_1fr_auto] items-center gap-6 md:gap-10 py-5 md:py-6 border-b border-black/[0.08] cursor-pointer"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              >
+                <div className="w-11 h-11 flex items-center justify-center bg-black/[0.04] group-hover:bg-[#2D6A4F] transition-colors duration-300 shrink-0">
+                  <span className="text-black/30 group-hover:text-white transition-colors duration-300">
+                    <svc.Icon size={18} />
+                  </span>
+                </div>
+
+                <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-10">
+                  <h3 className="font-black text-black group-hover:text-[#2D6A4F] transition-colors duration-300 shrink-0 text-[18px]">
+                    {svc.title}
+                  </h3>
+                  <p className="text-black/40 leading-relaxed" style={{ fontSize: "var(--text-sm)" }}>
+                    {svc.description}
+                  </p>
+                </div>
 
                 <Link
                   href={svc.href}
-                  className={`mt-6 inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wide uppercase transition-all duration-300 group-hover:gap-3 ${
-                    svc.featured ? "text-black/70 hover:text-black" : "text-[#9EC84A]/70 hover:text-[#9EC84A]"
-                  }`}
+                  className="shrink-0 w-9 h-9 flex items-center justify-center border border-black/10 group-hover:border-[#2D6A4F] group-hover:bg-[#2D6A4F] group-hover:text-white transition-all duration-300 text-black/30"
+                  aria-label={`Learn more about ${svc.title}`}
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  Learn more <span>→</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </Link>
-
-                {/* Hover glow for dark cards */}
-                {!svc.featured && (
-                  <div className="absolute inset-0 bg-[#9EC84A] opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none" />
-                )}
               </motion.div>
             </AnimateIn>
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -6,7 +6,9 @@ import About from "@/components/sections/About";
 import Stats from "@/components/sections/Stats";
 import WhatPrimeDoes from "@/components/sections/WhatPrimeDoes";
 import EntrepreneursOfPrime from "@/components/sections/EntrepreneursOfPrime";
+import Gallery from "@/components/sections/Gallery";
 import FAQ from "@/components/sections/FAQ";
+import Partners from "@/components/sections/Partners";
 
 export default function Home() {
   return (
@@ -19,7 +21,9 @@ export default function Home() {
         <Stats />
         <WhatPrimeDoes />
         <EntrepreneursOfPrime />
+        <Gallery />
         <FAQ />
+        <Partners />
       </main>
       <Footer />
     </>
