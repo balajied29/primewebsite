@@ -55,7 +55,7 @@ export default function Hero() {
             animate={{ y: 0 }}
             transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
           >
-            Meghalaya&apos;s hub for<br />
+            Meghalaya&apos;s Hub for<br />
             <span className="text-[#74C69D]">Entrepreneurs.</span>
           </motion.h1>
         </div>
