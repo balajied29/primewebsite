@@ -10,28 +10,37 @@ const stats = [
   { num: 2847, suffix: "+", label: "CM Elevate Graduates" },
   { num: 1350, suffix: "+", label: "Registered Startups"  },
   { num: 885,  suffix: "+", label: "Funding Cases"        },
-  { num: 459,  suffix: "",  label: "BFS Sector Startups"  },
+  { num: 459,  suffix: "+", label: "BFS Sector Startups"  },
   { num: 353,  suffix: "",  label: "Incubation Cohort"    },
   { num: 287,  suffix: "",  label: "Rural Enterprises"    },
 ];
 
 function StatItem({ stat, delay }: { stat: typeof stats[number]; delay: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const inView = useInView(ref, { once: true, margin: "-20px" });
 
   return (
     <motion.div
       ref={ref}
-      className="flex flex-col gap-2 px-6 py-8 border-r border-white/[0.08] last:border-r-0"
-      initial={{ opacity: 0, y: 20 }}
+      className="bg-[#1B4332] px-5 py-7 md:px-6 md:py-10 flex flex-col gap-2"
+      initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
     >
-      <p className="text-white/35 font-medium leading-snug" style={{ fontSize: "var(--text-label)" }}>
-        {stat.label}
+      <p
+        className="text-white/30 font-medium leading-tight"
+        style={{ fontSize: "10px" }}
+      >
+        {stat.label.toUpperCase()}
       </p>
-      <p className="font-black text-white leading-none" style={{ fontSize: "var(--text-heading)" }}>
-        {inView ? <CountUp to={stat.num} suffix={stat.suffix} duration={1.6} /> : "0"}
+      <p
+        className="font-black text-white leading-none"
+        style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.25rem)" }}
+      >
+        {inView
+          ? <CountUp to={stat.num} suffix={stat.suffix} duration={1.8} />
+          : <span>0{stat.suffix}</span>
+        }
       </p>
     </motion.div>
   );
@@ -39,56 +48,62 @@ function StatItem({ stat, delay }: { stat: typeof stats[number]; delay: number }
 
 export default function Stats() {
   return (
-    <section className="bg-[#1B4332]">
+    <section className="bg-[#1B4332] border-t border-b border-white/[0.07]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 md:py-28">
 
-      {/* Top: heading + CTA */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-14 md:pt-28 pb-10 md:pb-14">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+        {/* Two-column layout: heading left, stats right */}
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-14 lg:gap-20 items-center">
 
+          {/* Left — label + heading + meta + CTA */}
           <AnimateIn direction="left">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-4 mb-7">
               <span className="w-6 h-px bg-[#74C69D]" />
-              <p className="font-semibold tracking-[0.25em] uppercase text-white/35" style={{ fontSize: "var(--text-label)" }}>
+              <p
+                className="font-semibold tracking-[0.25em] uppercase text-white/30"
+                style={{ fontSize: "var(--text-label)" }}
+              >
                 Ecosystem Reach
               </p>
             </div>
+
             <h2
-              className="font-black text-white leading-[0.9] tracking-tight"
+              className="font-black text-white leading-[0.88] tracking-tight mb-8"
               style={{ fontSize: "var(--text-display)" }}
             >
-              The scale of PRIME,<br />
-              by the <span className="text-[#74C69D]">numbers.</span>
+              The scale<br />
+              of PRIME,<br />
+              by the<br />
+              <span className="text-[#74C69D]">numbers.</span>
             </h2>
-          </AnimateIn>
 
-          <AnimateIn direction="right" delay={0.1} className="flex flex-col items-start md:items-end gap-5 shrink-0">
-            <p className="text-white/25 font-medium" style={{ fontSize: "var(--text-label)" }}>
+            <p
+              className="text-white/20 font-medium mb-7"
+              style={{ fontSize: "var(--text-label)" }}
+            >
               All figures since inception · 2019
             </p>
+
             <Link
               href="/ecosystem-data"
-              className="inline-flex items-center gap-3 px-6 py-3 border border-white/20 text-white/60 font-semibold hover:border-[#74C69D] hover:text-[#74C69D] transition-all duration-300"
+              className="inline-flex items-center gap-3 px-7 py-3.5 border border-white/15 text-white/50 font-semibold hover:border-[#74C69D] hover:text-[#74C69D] transition-all duration-300"
               style={{ fontSize: "var(--text-sm)" }}
             >
               Read more <span>→</span>
             </Link>
           </AnimateIn>
 
+          {/* Right — 3×2 stat grid */}
+          <AnimateIn direction="right" delay={0.1}>
+            {/* gap-px with bg-white/[0.07] creates hairline separators between cells */}
+            <div className="grid grid-cols-3 gap-px bg-white/[0.07]">
+              {stats.map((stat, i) => (
+                <StatItem key={stat.label} stat={stat} delay={0.12 + i * 0.07} />
+              ))}
+            </div>
+          </AnimateIn>
+
         </div>
       </div>
-
-      {/* Divider */}
-      <div className="border-t border-white/[0.08]" />
-
-      {/* Bottom: 6-column stats strip */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 pb-14 md:pb-28">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-white/[0.08] border-b border-white/[0.08]">
-          {stats.map((stat, i) => (
-            <StatItem key={stat.label} stat={stat} delay={i * 0.07} />
-          ))}
-        </div>
-      </div>
-
     </section>
   );
 }
