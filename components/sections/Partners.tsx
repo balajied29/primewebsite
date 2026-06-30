@@ -9,37 +9,32 @@ const partners = [
 
 export default function Partners() {
   return (
-    <section className="bg-white border-t border-black/[0.06] py-10 md:py-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16">
+    <section className="bg-white border-t border-black/[0.06] py-14 md:py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col items-center gap-10">
 
-          {/* Label */}
-          <p
-            className="font-semibold tracking-[0.25em] uppercase text-black/30 shrink-0"
-            style={{ fontSize: "var(--text-label)" }}
-          >
-            Partners &amp; Affiliations
-          </p>
+        {/* Label */}
+        <p
+          className="font-semibold tracking-[0.25em] uppercase text-black/30"
+          style={{ fontSize: "var(--text-label)" }}
+        >
+          Partners &amp; Affiliations
+        </p>
 
-          {/* Divider */}
-          <div className="hidden md:block w-px h-8 bg-black/[0.08] shrink-0" />
-
-          {/* Logos */}
-          <div className="flex flex-wrap items-center gap-10 md:gap-14">
-            {partners.map((p) => (
-              <Image
-                key={p.name}
-                src={p.src}
-                alt={p.name}
-                width={p.w}
-                height={p.h}
-                className="grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 object-contain"
-                style={{ height: 44, width: "auto" }}
-              />
-            ))}
-          </div>
-
+        {/* Logos */}
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+          {partners.map((p) => (
+            <Image
+              key={p.name}
+              src={p.src}
+              alt={p.name}
+              width={p.w}
+              height={p.h}
+              className="grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 object-contain"
+              style={{ height: 64, width: "auto" }}
+            />
+          ))}
         </div>
+
       </div>
     </section>
   );

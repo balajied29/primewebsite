@@ -197,7 +197,7 @@ export default function StudentTinkeringFundPage() {
           </p>
           <a
             href="mailto:info@primemeghalaya.com"
-            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-white text-[#1B4332] font-bold hover:bg-[#74C69D] transition-colors"
             style={{ fontSize: "var(--text-sm)" }}
           >
             Contact PRIME

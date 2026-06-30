@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative flex items-end min-h-[100svh] overflow-hidden bg-[#1B4332]"
+      className="relative flex items-center min-h-[100svh] overflow-hidden bg-[#1B4332]"
       aria-label="Hero — PRIME Meghalaya"
     >
       {/* Background photo */}
@@ -26,12 +26,10 @@ export default function Hero() {
 
       {/* Dark overlay — clean, no gradient */}
       <div className="absolute inset-0 bg-black/55" />
-      {/* Bottom fade so text stays readable */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
 
       {/* Content — centred */}
       <motion.div
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 pb-16 md:pb-24 pt-44 flex flex-col items-center text-center"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-10 py-32 flex flex-col items-center text-center"
         style={{ opacity: contentOpacity }}
       >
         {/* Eyebrow */}
@@ -88,26 +86,6 @@ export default function Hero() {
           >
             Join PRIME <span>→</span>
           </Link>
-        </motion.div>
-
-        {/* Stats strip */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.4, ease: EASE }}
-          className="mt-14 pt-6 border-t border-white/[0.08] flex flex-wrap justify-center gap-x-10 gap-y-5"
-        >
-          {[
-            { value: "1,350+",     label: "Registered Startups" },
-            { value: "885+",       label: "Funding Cases"       },
-            { value: "Up to ₹75L", label: "Max. Grant / Loan"  },
-            { value: "Est. 2019",  label: "Govt. of Meghalaya"  },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <p className="font-black text-white leading-none mb-1" style={{ fontSize: "var(--text-sm)" }}>{s.value}</p>
-              <p className="text-white/30 font-medium" style={{ fontSize: "var(--text-label)" }}>{s.label}</p>
-            </div>
-          ))}
         </motion.div>
       </motion.div>
 

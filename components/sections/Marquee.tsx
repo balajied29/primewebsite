@@ -16,7 +16,7 @@ export default function Marquee() {
     <div className="bg-[#2D6A4F] py-3.5 overflow-hidden">
       <div className="animate-marquee select-none">
         {[text, text].map((t, i) => (
-          <span key={i} className="flex items-center pr-20 text-[11px] font-bold tracking-[0.2em] uppercase text-black whitespace-nowrap">
+          <span key={i} className="flex items-center pr-20 text-[11px] font-bold tracking-[0.2em] uppercase text-white whitespace-nowrap">
             {t}
           </span>
         ))}

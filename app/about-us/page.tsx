@@ -180,11 +180,23 @@ export default function AboutUsPage() {
           >
             Our institutional partners
           </h2>
-          <div className="flex flex-wrap items-center gap-x-12 gap-y-8 opacity-60">
-            {["Government of Meghalaya", "IIM Calcutta Innovation Park", "MBMA", "MIE", "Startup India"].map((p) => (
-              <span key={p} className="text-white font-semibold tracking-wide" style={{ fontSize: "var(--text-body)" }}>
-                {p}
-              </span>
+          <div className="flex flex-wrap items-center gap-x-14 gap-y-10">
+            {[
+              { name: "Startup India",                           src: "/assets/partners/startup-india.png", w: 541, h: 140 },
+              { name: "IIM Calcutta Innovation Park",            src: "/assets/partners/iim-calcutta.png",  w: 350, h: 381 },
+              { name: "MBMA",                                    src: "/assets/partners/mbma.png",          w: 445, h: 155 },
+              { name: "Meghalaya Institute of Entrepreneurship", src: "/assets/partners/mie.png",           w: 168, h: 190 },
+            ].map((p) => (
+              <div key={p.name} className="bg-white px-6 py-4 flex items-center justify-center">
+                <Image
+                  src={p.src}
+                  alt={p.name}
+                  width={p.w}
+                  height={p.h}
+                  className="object-contain"
+                  style={{ height: 44, width: "auto" }}
+                />
+              </div>
             ))}
           </div>
         </div>

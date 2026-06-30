@@ -109,7 +109,7 @@ export default function PrimeEntrepreneurshipFundingPage() {
               >
                 <div className="flex items-start justify-between mb-5">
                   <div>
-                    <p className="font-bold text-[#2D6A4F] uppercase tracking-widest mb-2" style={{ fontSize: "var(--text-label)" }}>
+                    <p className={`font-bold uppercase tracking-widest mb-2 ${ins.highlight ? "text-[#74C69D]" : "text-[#2D6A4F]"}`} style={{ fontSize: "var(--text-label)" }}>
                       {ins.type}
                     </p>
                     <h3
@@ -120,13 +120,13 @@ export default function PrimeEntrepreneurshipFundingPage() {
                     </h3>
                   </div>
                   <span
-                    className="border border-[#2D6A4F]/30 text-[#2D6A4F] font-semibold px-2 py-1 shrink-0 mt-1"
+                    className={`font-semibold px-2 py-1 shrink-0 mt-1 ${ins.highlight ? "border border-[#74C69D]/40 text-[#74C69D]" : "border border-[#2D6A4F]/30 text-[#2D6A4F]"}`}
                     style={{ fontSize: "var(--text-label)" }}
                   >
                     {ins.purpose}
                   </span>
                 </div>
-                <p className="font-black text-[#2D6A4F] leading-[0.9] mb-5" style={{ fontSize: "var(--text-heading)" }}>
+                <p className={`font-black leading-[0.9] mb-5 ${ins.highlight ? "text-[#74C69D]" : "text-[#2D6A4F]"}`} style={{ fontSize: "var(--text-heading)" }}>
                   {ins.amount}
                 </p>
                 <div className="mb-4">
@@ -266,7 +266,7 @@ export default function PrimeEntrepreneurshipFundingPage() {
             href="https://portal.primemeghalaya.com/GeneralRegistraion.php"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-white text-[#1B4332] font-bold hover:bg-[#74C69D] transition-colors"
             style={{ fontSize: "var(--text-sm)" }}
           >
             Register on PRIME Portal

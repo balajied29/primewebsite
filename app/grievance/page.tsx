@@ -228,7 +228,7 @@ export default function GrievancePage() {
             </p>
             <a
               href="mailto:grievance@primemeghalaya.com"
-              className="inline-flex items-center gap-3 px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+              className="inline-flex items-center gap-3 px-9 py-4 bg-white text-[#1B4332] font-bold hover:bg-[#74C69D] transition-colors"
               style={{ fontSize: "var(--text-sm)" }}
             >
               <HiMail size={16} />

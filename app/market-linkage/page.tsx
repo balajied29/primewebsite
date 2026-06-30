@@ -188,7 +188,7 @@ export default function MarketLinkagePage() {
             href="https://portal.primemeghalaya.com/GeneralRegistraion.php"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-9 py-4 bg-[#2D6A4F] text-black font-bold hover:bg-[#8BB53F] transition-colors"
+            className="inline-block px-9 py-4 bg-white text-[#1B4332] font-bold hover:bg-[#74C69D] transition-colors"
             style={{ fontSize: "var(--text-sm)" }}
           >
             Register on PRIME Portal

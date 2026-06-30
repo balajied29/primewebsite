@@ -64,7 +64,7 @@ export default function WhatPrimeDoes() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
 
         <AnimateIn>
-          <div className="flex items-center gap-4 mb-16">
+          <div className="flex items-center gap-4 mb-12">
             <span className="w-8 h-px bg-[#2D6A4F]" />
             <p className="font-semibold tracking-[0.25em] uppercase text-black/35" style={{ fontSize: "var(--text-label)" }}>
               What We Offer
@@ -72,28 +72,28 @@ export default function WhatPrimeDoes() {
           </div>
         </AnimateIn>
 
-        <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 mb-16">
-          <AnimateIn direction="left">
-            <h2 className="font-black text-black leading-[0.9] tracking-tight" style={{ fontSize: "var(--text-display)" }}>
-              Everything a founder<br />
-              needs to<br />
-              <span className="text-[#2D6A4F]">succeed.</span>
-            </h2>
-          </AnimateIn>
-          <AnimateIn direction="right" delay={0.1} className="flex items-end">
-            <div className="flex flex-col gap-4">
-              <p className="text-black/45 leading-[1.75]" style={{ fontSize: "var(--text-lead)" }}>
-                PRIME delivers six interlocking pillars of support — from your first idea to your fastest growth stage.
-              </p>
-              <Link
-                href="/about-us"
-                className="group inline-flex items-center gap-3 font-semibold text-black hover:text-[#2D6A4F] transition-colors duration-300 self-start"
-                style={{ fontSize: "var(--text-sm)" }}
-              >
-                Full programme overview
-                <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
-              </Link>
-            </div>
+        <AnimateIn direction="left">
+          <h2 className="font-black text-black leading-[0.9] tracking-tight mb-12" style={{ fontSize: "var(--text-display)" }}>
+            Everything a founder<br />
+            needs to{" "}
+            <span className="text-[#2D6A4F]">succeed.</span>
+          </h2>
+        </AnimateIn>
+
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          <div />
+          <AnimateIn direction="right" delay={0.1}>
+            <p className="text-black/45 leading-[1.75] mb-6" style={{ fontSize: "var(--text-lead)" }}>
+              PRIME delivers six interlocking pillars of support — from your first idea to your fastest growth stage.
+            </p>
+            <Link
+              href="/about-us"
+              className="group inline-flex items-center gap-3 font-semibold text-black hover:text-[#2D6A4F] transition-colors duration-300"
+              style={{ fontSize: "var(--text-sm)" }}
+            >
+              Full programme overview
+              <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+            </Link>
           </AnimateIn>
         </div>
 

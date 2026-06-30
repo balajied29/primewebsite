@@ -156,6 +156,7 @@ const navLinks: NavLink[] = [
       },
     },
   },
+  { label: "Updates", href: "/updates", mega: null },
 ];
 
 export default function Navbar() {
@@ -203,7 +204,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-[1fr_auto_1fr] items-center h-[76px]">
 
         {/* Col 1 — Logo + tagline */}
-        <Link href="/" className="flex flex-col shrink-0 gap-1 items-start" onClick={() => setOpenDropdown(null)}>
+        <Link href="/" className="flex shrink-0 items-start" onClick={() => setOpenDropdown(null)}>
           <Image
             src="/logo-color.png"
             alt="PRIME Meghalaya"
@@ -212,9 +213,6 @@ export default function Navbar() {
             className="h-8 w-auto object-contain object-left"
             priority
           />
-          <span className="text-[8px] font-semibold tracking-[0.2em] uppercase text-black/30 leading-none">
-            Government of Meghalaya
-          </span>
         </Link>
 
         {/* Col 2 — Nav links */}
@@ -229,7 +227,7 @@ export default function Navbar() {
                     onFocus={() => openMenu(link.label)}
                     aria-expanded={isOpen}
                     aria-haspopup="true"
-                    className={`text-[13px] flex items-center gap-1.5 transition-colors py-1 font-medium ${
+                    className={`text-[15px] flex items-center gap-1.5 transition-colors py-1 font-medium ${
                       isOpen ? "text-black" : "text-black/50 hover:text-black"
                     }`}
                   >
@@ -247,7 +245,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     href={link.href}
-                    className="text-[13px] font-medium text-black/50 hover:text-black transition-colors"
+                    className="text-[15px] font-medium text-black/50 hover:text-black transition-colors"
                     onMouseEnter={scheduleClose}
                   >
                     {link.label}
@@ -268,7 +266,7 @@ export default function Navbar() {
             data-lpignore="true"
             data-form-type="other"
             onMouseEnter={scheduleClose}
-            className="hidden md:inline-flex items-center gap-1 text-[13px] font-semibold text-black hover:text-[#2D6A4F] transition-colors"
+            className="hidden md:inline-flex items-center gap-1 text-[15px] font-semibold text-black hover:text-[#2D6A4F] transition-colors"
           >
             Apply
             <svg width="9" height="9" viewBox="0 0 10 10" fill="none" className="opacity-55 mt-px">
@@ -363,7 +361,7 @@ export default function Navbar() {
                                     </div>
                                   )}
                                   <div>
-                                    <p className="text-[13px] font-semibold text-black/80 group-hover:text-black transition-colors leading-tight flex items-center gap-1.5">
+                                    <p className="text-[15px] font-semibold text-black/80 group-hover:text-black transition-colors leading-tight flex items-center gap-1.5">
                                       {item.label}
                                       {item.external && (
                                         <svg className="w-2.5 h-2.5 opacity-40" viewBox="0 0 10 10" fill="none">
