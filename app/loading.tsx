@@ -1,45 +1,36 @@
-import { Skeleton, SkeletonText } from "@/components/ui/Skeleton";
+import Image from "next/image";
 
-/**
- * Shown by Next.js while a page segment is streaming / hydrating.
- * Mirrors the rough layout of a typical inner page so there's no flash of blank screen.
- */
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]" aria-label="Loading page content" role="status">
-      {/* Navbar skeleton */}
-      <div className="sticky top-0 h-[64px] border-b border-white/[0.06] bg-[#0a0a0a] flex items-center px-6 lg:px-10">
-        <Skeleton className="h-9 w-32" />
+    <div
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#1B4332]"
+      role="status"
+      aria-label="Loading"
+    >
+      {/* Star logo — glowing pulse */}
+      <div className="animate-prime-fade-in">
+        <Image
+          src="/logo-white.png"
+          alt="PRIME Meghalaya"
+          width={676}
+          height={183}
+          className="animate-prime-glow"
+          style={{ height: "clamp(28px, 4vw, 44px)", width: "auto" }}
+          priority
+        />
       </div>
 
-      {/* Hero skeleton */}
-      <div className="relative overflow-hidden min-h-[60vh] flex items-center px-6 lg:px-10">
-        <div className="max-w-7xl mx-auto w-full py-24 space-y-8">
-          <Skeleton className="h-4 w-56" />
-          <div className="space-y-4">
-            <Skeleton className="h-20 md:h-28 w-3/4" />
-            <Skeleton className="h-20 md:h-28 w-1/2" />
-            <Skeleton className="h-20 md:h-28 w-2/5" />
-          </div>
-          <SkeletonText lines={2} className="max-w-xs" />
-          <div className="flex gap-4 pt-2">
-            <Skeleton className="h-12 w-32" />
-            <Skeleton className="h-12 w-36" />
-          </div>
-        </div>
-      </div>
-
-      {/* Content grid skeleton */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {Array.from({ length: 3 }, (_, i) => (
-            <div key={i} className="space-y-4 p-6 rounded-sm bg-white/[0.03]">
-              <Skeleton className="h-10 w-10 rounded-full" />
-              <Skeleton className="h-5 w-3/4" />
-              <SkeletonText lines={3} />
-            </div>
-          ))}
-        </div>
+      {/* Subtle dot progress */}
+      <div className="flex items-center gap-1.5 mt-10">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="w-1 h-1 rounded-full bg-[#74C69D]"
+            style={{
+              animation: `prime-star-pulse 1.4s ease-in-out ${i * 0.2}s infinite`,
+            }}
+          />
+        ))}
       </div>
     </div>
   );

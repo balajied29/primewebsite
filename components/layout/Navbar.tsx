@@ -71,7 +71,7 @@ const navLinks: NavLink[] = [
           heading: "Connect",
           items: [
             { label: "PRIME Portal",  subtitle: "Register your startup", href: "/register" },
-            { label: "Contact Us",    subtitle: "Reach our team",        href: "/about-us#contact" },
+            { label: "Contact Us",    subtitle: "Reach our team",        href: "/contact" },
             { label: "Grievance",     subtitle: "File a complaint",      href: "/grievance" },
           ],
         },
