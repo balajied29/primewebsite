@@ -47,42 +47,50 @@ export default function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <div className="overflow-hidden mb-7">
+        <div className="overflow-hidden mb-8">
           <motion.h1
-            className="font-black text-white leading-[0.9] tracking-tight"
-            style={{ fontSize: "var(--text-display)" }}
+            className="font-black text-white leading-[0.88] tracking-tight"
+            style={{ fontSize: "var(--text-hero)" }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
+            transition={{ duration: 0.95, delay: 0.3, ease: EASE }}
           >
-            Meghalaya&apos;s Hub for<br />
-            <span className="text-[#74C69D]">Entrepreneurs.</span>
+            Meghalaya&apos;s Hub<br />
+            for <span className="text-[#74C69D]">Entrepreneurs.</span>
           </motion.h1>
         </div>
 
         {/* Description */}
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.85, ease: EASE }}
-          className="text-white/45 leading-[1.75] max-w-sm mb-8"
-          style={{ fontSize: "var(--text-body)" }}
+          transition={{ duration: 0.7, delay: 0.8, ease: EASE }}
+          className="text-white/60 leading-[1.75] max-w-md mb-10"
+          style={{ fontSize: "var(--text-lead)" }}
         >
-          Real support for real people building real businesses — right here in Meghalaya.
+          Real support for real founders — incubation, funding, mentorship, and market access, right here in Meghalaya.
         </motion.p>
 
-        {/* CTA */}
+        {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0, ease: EASE }}
+          className="flex flex-wrap items-center gap-4 justify-center"
         >
           <Link
             href="/register"
-            className="inline-flex items-center gap-3 px-7 py-3.5 bg-white text-[#1B4332] font-bold hover:bg-[#74C69D] hover:text-[#1B4332] transition-colors duration-300"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#1B4332] font-bold hover:bg-[#74C69D] transition-colors duration-300"
             style={{ fontSize: "var(--text-sm)" }}
           >
-            Join PRIME <span>→</span>
+            Apply to PRIME <span>→</span>
+          </Link>
+          <Link
+            href="/about-us"
+            className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white/70 font-semibold hover:border-white/50 hover:text-white transition-all duration-300"
+            style={{ fontSize: "var(--text-sm)" }}
+          >
+            Learn more
           </Link>
         </motion.div>
       </motion.div>

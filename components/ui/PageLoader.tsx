@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function PageLoader() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible]   = useState(true);
   const [barWidth, setBarWidth] = useState(0);
   const rafRef = useRef<number | null>(null);
 
@@ -17,12 +17,12 @@ export default function PageLoader() {
       return;
     }
 
-    const start = performance.now();
+    const start    = performance.now();
     const duration = 1400;
 
     const tick = (now: number) => {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
+      const t      = Math.min((now - start) / duration, 1);
+      const eased  = 1 - Math.pow(1 - t, 3);
       setBarWidth(eased * 100);
 
       if (t < 1) {
@@ -31,13 +31,13 @@ export default function PageLoader() {
         setTimeout(() => {
           setVisible(false);
           sessionStorage.setItem("prime-loaded", "1");
-        }, 220);
+        }, 240);
       }
     };
 
     const id = setTimeout(() => {
       rafRef.current = requestAnimationFrame(tick);
-    }, 150);
+    }, 120);
 
     return () => {
       clearTimeout(id);
@@ -50,42 +50,43 @@ export default function PageLoader() {
       {visible && (
         <motion.div
           key="prime-loader"
-          className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center select-none"
+          className="fixed inset-0 z-[9999] bg-[#1B4332] flex flex-col items-center justify-center select-none"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.45, ease: EASE }}
+          transition={{ duration: 0.5, ease: EASE }}
           aria-hidden="true"
         >
-          {/* PRIME logo */}
+          {/* PRIME logo — glowing pulse */}
           <motion.div
-            initial={{ opacity: 0, y: 16, scale: 0.94 }}
+            initial={{ opacity: 0, y: 14, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.65, ease: EASE }}
-            className="mb-10"
+            transition={{ duration: 0.7, ease: EASE }}
+            className="mb-12"
           >
             <Image
               src="/logo-white.png"
               alt="PRIME Meghalaya"
               width={200}
               height={60}
-              className="h-14 w-auto object-contain"
+              className="h-12 w-auto object-contain animate-prime-glow"
               priority
             />
           </motion.div>
 
-          {/* Thin progress bar */}
-          <div className="w-24 h-[1px] bg-white/10 relative overflow-hidden">
+          {/* Progress bar */}
+          <div className="w-32 h-px bg-white/[0.12] relative overflow-hidden">
             <div
-              className="absolute inset-y-0 left-0 bg-[#2D6A4F]"
+              className="absolute inset-y-0 left-0 bg-[#74C69D]"
               style={{ width: `${barWidth}%`, transition: "none" }}
             />
           </div>
 
           {/* Tagline */}
           <motion.p
-            className="mt-4 text-[9px] text-white/30 tracking-[0.35em] uppercase font-medium"
+            className="mt-5 tracking-[0.35em] uppercase font-semibold text-[#74C69D]/50"
+            style={{ fontSize: "9px" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.45, duration: 0.5 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
           >
             Government of Meghalaya
           </motion.p>

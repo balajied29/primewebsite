@@ -4,6 +4,7 @@ import "./globals.css";
 import PageLoader from "@/components/ui/PageLoader";
 import CookieConsent from "@/components/ui/CookieConsent";
 import PageTransition from "@/components/ui/PageTransition";
+import AccessibilityToolbar from "@/components/ui/AccessibilityToolbar";
 
 const hostGrotesk = Host_Grotesk({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
         <PageLoader />
         <PageTransition>{children}</PageTransition>
         <CookieConsent />
+        <AccessibilityToolbar />
       </body>
     </html>
   );

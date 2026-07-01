@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import AnimateIn from "@/components/ui/AnimateIn";
 
 const entrepreneurs = [
@@ -39,9 +40,9 @@ export default function EntrepreneursOfPrime() {
         </div>
 
         {/* Card grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 mb-14">
           {entrepreneurs.map((e, i) => (
-            <AnimateIn key={e.name} delay={i * 0.06} direction="up">
+            <AnimateIn key={e.name} delay={i * 0.08} direction="up">
               <div className="group cursor-default">
                 {/* Square image */}
                 <div className="relative aspect-square overflow-hidden bg-black/10 mb-4">
@@ -49,29 +50,24 @@ export default function EntrepreneursOfPrime() {
                     src={e.img}
                     alt={e.name}
                     fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 33vw"
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                 </div>
 
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-3">
-                  <span
-                    className="border border-black/20 px-2.5 py-1 font-semibold tracking-[0.15em] uppercase text-black/50"
-                    style={{ fontSize: "10px" }}
-                  >
+                  <span className="border border-black/20 px-2.5 py-1 font-semibold tracking-[0.15em] uppercase text-black/50" style={{ fontSize: "10px" }}>
                     {e.sector}
                   </span>
-                  <span
-                    className="border border-black/20 px-2.5 py-1 font-semibold tracking-[0.15em] uppercase text-black/50"
-                    style={{ fontSize: "10px" }}
-                  >
+                  <span className="border border-black/20 px-2.5 py-1 font-semibold tracking-[0.15em] uppercase text-black/50" style={{ fontSize: "10px" }}>
                     {e.tag}
                   </span>
                 </div>
 
                 {/* Business name */}
-                <p className="font-black text-black leading-snug mb-0.5" style={{ fontSize: "var(--text-body)" }}>
+                <p className="font-black text-black leading-snug mb-0.5 group-hover:text-[#2D6A4F] transition-colors duration-200" style={{ fontSize: "var(--text-body)" }}>
                   {e.business}
                 </p>
                 {/* Entrepreneur name */}
@@ -82,6 +78,22 @@ export default function EntrepreneursOfPrime() {
             </AnimateIn>
           ))}
         </div>
+
+        {/* View all CTA */}
+        <AnimateIn delay={0.1}>
+          <div className="flex items-center gap-6">
+            <span className="flex-1 h-px bg-black/[0.07]" />
+            <Link
+              href="/entrepreneurs"
+              className="group inline-flex items-center gap-3 font-semibold text-black/40 hover:text-[#2D6A4F] transition-colors duration-200"
+              style={{ fontSize: "var(--text-sm)" }}
+            >
+              View all entrepreneurs
+              <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
+            </Link>
+            <span className="flex-1 h-px bg-black/[0.07]" />
+          </div>
+        </AnimateIn>
 
       </div>
     </section>

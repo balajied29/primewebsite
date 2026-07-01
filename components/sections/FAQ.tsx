@@ -81,13 +81,13 @@ export default function FAQ() {
             </AnimateIn>
           </div>
 
-          {/* Right: accordion */}
-          <AnimateIn direction="right" delay={0.1}>
-            <div className="border-t border-black/[0.08]">
-              {faqs.map((faq, i) => {
+          {/* Right: accordion — each item staggers in individually */}
+          <div className="border-t border-black/[0.08]">
+            {faqs.map((faq, i) => {
                 const isOpen = openIndex === i;
                 return (
-                  <div key={i} className="border-b border-black/[0.08]">
+                  <AnimateIn key={i} delay={i * 0.07} direction="up" distance={12}>
+                  <div className="border-b border-black/[0.08]">
                     <button
                       onClick={() => setOpenIndex(isOpen ? null : i)}
                       className="w-full flex items-start justify-between gap-6 py-5 text-left group"
@@ -140,10 +140,10 @@ export default function FAQ() {
                       )}
                     </AnimatePresence>
                   </div>
+                  </AnimateIn>
                 );
               })}
             </div>
-          </AnimateIn>
 
         </div>
       </div>
