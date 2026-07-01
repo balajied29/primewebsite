@@ -103,9 +103,16 @@ function SummaryCard({ s }: { s: typeof SUMMARY[number] }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
   return (
-    <div ref={ref} className="bg-white border border-black/[0.07] px-6 py-6">
-      <p className="font-black text-black leading-none mb-1" style={{ fontSize: "var(--text-heading)" }}>
-        {inView ? <CountUp to={s.value} suffix={s.suffix} duration={1.8} /> : "0"}
+    <div ref={ref} className="bg-white px-6 py-8">
+      <p className="font-black text-black leading-none mb-2.5" style={{ fontSize: "clamp(1.25rem, 2vw, 1.875rem)" }}>
+        {inView ? (
+          <>
+            <CountUp to={s.value} duration={1.8} />
+            {s.suffix && (
+              <span className="text-[#2D6A4F]">{s.suffix}</span>
+            )}
+          </>
+        ) : "0"}
       </p>
       <p className="text-black/35 font-medium" style={{ fontSize: "var(--text-label)" }}>{s.label}</p>
     </div>
