@@ -318,22 +318,22 @@ export default function Navbar() {
             role="region"
             aria-label={`${openDropdown} menu`}
           >
-            <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8">
+            <div className="max-w-7xl mx-auto px-8 lg:px-12 py-10">
               {(() => {
                 const link = navLinks.find(l => l.label === openDropdown);
                 if (!link?.mega) return null;
                 const { columns, featured } = link.mega;
 
                 return (
-                  <div className={`grid gap-10 ${featured ? "grid-cols-[repeat(auto-fit,minmax(160px,1fr))_280px]" : "grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"}`}>
+                  <div className={`grid gap-12 ${featured ? "grid-cols-[repeat(auto-fit,minmax(160px,1fr))_280px]" : "grid-cols-[repeat(auto-fit,minmax(160px,1fr))]"}`}>
                     {/* Columns */}
-                    <div className={`grid gap-10 ${columns.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
+                    <div className={`grid gap-16 ${columns.length === 2 ? "grid-cols-2" : "grid-cols-3"}`}>
                       {columns.map((col) => (
                         <div key={col.heading}>
-                          <p className="text-[9px] font-bold tracking-[0.28em] uppercase text-black/30 mb-5">
+                          <p className="text-[9px] font-bold tracking-[0.28em] uppercase text-black/30 mb-6 pb-3 border-b border-black/[0.07]">
                             {col.heading}
                           </p>
-                          <ul className="flex flex-col gap-1">
+                          <ul className="flex flex-col gap-0.5">
                             {col.items.map((item) => (
                               <li key={item.href}>
                                 <Link
@@ -341,7 +341,7 @@ export default function Navbar() {
                                   target={item.external ? "_blank" : undefined}
                                   rel={item.external ? "noopener noreferrer" : undefined}
                                   onClick={() => setOpenDropdown(null)}
-                                  className="group flex items-start gap-3 py-2 rounded-sm hover:bg-black/[0.04] -mx-2 px-2 transition-colors"
+                                  className="group flex items-start gap-3 py-2.5 rounded-sm hover:bg-black/[0.04] -mx-2 px-2 transition-colors"
                                 >
                                   {item.img && (
                                     <div className="shrink-0 w-10 h-10 rounded-[2px] overflow-hidden bg-black/10 mt-0.5">

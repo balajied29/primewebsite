@@ -150,7 +150,7 @@ export default function About() {
 
           <AnimateIn direction="right" delay={0.1}>
             <div className="flex flex-col gap-8 pt-1">
-              <p className="text-black/50 leading-[1.8]" style={{ fontSize: "var(--text-body)" }}>
+              <p className="text-black leading-[1.8]" style={{ fontSize: "var(--text-lead)" }}>
                 Launched in 2019 by the Government of Meghalaya, PRIME — the Promotion and Incubation of Market-driven Enterprises programme — is the state&apos;s most comprehensive entrepreneurship initiative, supporting founders at every stage through a network of PRIME Hubs.
               </p>
 
